@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="logo">
+    <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
+  </div>
+  <div class="product-list">
+    <div class="product" *ngFor="let product of products">
+      <span>{{product}}</span>
+    </div>
+  </div>
+  <div class="action-icons">
+    <i class="bi bi-search"></i>
+    <i class="bi bi-bag"></i>
+  </div>
+</div>
