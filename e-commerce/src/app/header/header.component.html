@@ -1,11 +1,21 @@
 <div class="container">
-  <div class="logo">
-    <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
-  </div>
-  <div class="product-list">
-    <div class="product" *ngFor="let product of products">
-      <span>{{product}}</span>
+  <div class="left-group">
+    <div class="logo">
+      <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
     </div>
+
+    <div class="dropdown" *ngFor="let product of products">
+      <button class="dropdown-toggle" type="button" (click)="toggleDropdown(product.name)">
+        <span>{{ product.name }}</span>
+          <i *ngIf="product.sections" class="bi bi-chevron-down" [style.transform]="product.isDropdownOpen ? 'rotate(180deg)' : ''"></i>
+      </button>
+      <div class="dropdown-menu" *ngIf="product.isDropdownOpen && product.sections">
+        <button *ngFor="let item of product.sections" class="dropdown-item">
+          <span>{{ item }}</span>
+        </button>
+      </div>
+    </div>
+
   </div>
   <div class="action-icons">
     <i class="bi bi-search"></i>
