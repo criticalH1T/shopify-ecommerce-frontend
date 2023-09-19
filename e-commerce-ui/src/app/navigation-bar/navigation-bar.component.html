@@ -1,0 +1,58 @@
+<ng-container *ngIf="isDesktopView; else mobileView">
+  <div class="container">
+    <div class="left-group">
+      <div class="logo">
+        <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
+      </div>
+
+      <div class="dropdown" *ngFor="let product of products">
+        <button class="dropdown-toggle" type="button" (click)="toggleDropdown(product.name)">
+          <span>{{ product.name }}</span>
+          <i *ngIf="product.sections" class="bi bi-chevron-down" [style.transform]="product.isDropdownOpen ? 'rotate(180deg)' : ''"></i>
+        </button>
+        <div class="dropdown-menu" *ngIf="product.isDropdownOpen && product.sections">
+          <button *ngFor="let item of product.sections" class="dropdown-item">
+            <span>{{ item }}</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+    <div class="action-icons">
+      <button>
+        <i class="bi bi-search"></i>
+      </button>
+      <button>
+        <i class="bi bi-bag"></i>
+      </button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #mobileView>
+  <div class="container">
+    <div class="menu">
+      <button *ngIf="!showBurgerMenu" (click)="toggleBurgerMenu()">
+        <i class="bi bi-list"></i>
+      </button>
+      <button *ngIf="showBurgerMenu" (click)="toggleBurgerMenu()">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <div class="menu-navigation" *ngIf="showBurgerMenu">
+        ll
+      </div>
+    </div>
+    <div class="logo">
+      <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
+    </div>
+    <div class="action-icons">
+      <button>
+        <i class="bi bi-search"></i>
+      </button>
+      <button>
+        <i class="bi bi-bag"></i>
+      </button>
+    </div>
+  </div>
+</ng-template>
+
