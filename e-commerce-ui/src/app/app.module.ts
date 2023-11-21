@@ -11,6 +11,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {NgOptimizedImage} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import { OurStoryPageComponent } from './our-story-page/our-story-page.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
     CheckoutComponent,
     HeaderComponent,
     ProductListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    OurStoryPageComponent
   ],
     imports: [
         BrowserModule,
