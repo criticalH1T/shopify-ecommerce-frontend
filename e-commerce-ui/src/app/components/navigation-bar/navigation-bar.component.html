@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left-group">
       <div class="logo">
-        <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
+        <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100">
       </div>
 
       <div class="dropdown" *ngFor="let product of products">
@@ -30,6 +30,7 @@
 </ng-container>
 
 <ng-template #mobileView>
+  <div id="overlay"></div>
   <div class="container">
     <div class="menu">
       <button *ngIf="!showBurgerMenu" (click)="toggleBurgerMenu()">
@@ -39,17 +40,25 @@
         <i class="bi bi-x-lg"></i>
       </button>
       <div class="menu-navigation" *ngIf="showBurgerMenu">
-        <div class="items" *ngFor="let product of products" (click)="openNavigationSections(product.name)">
-          <span>{{product.name}}</span>
-          <i *ngIf="product.sections" class="bi bi-arrow-right"></i>
-        </div>
-      </div>
-      <div class="menu-navigation-selections">
-
+        <ng-container *ngIf="!isSectionOpened">
+          <div class="items" *ngFor="let product of products" (click)="openNavigationSections(product, product.name)">
+            <span>{{product.name}}</span>
+            <i *ngIf="product.sections" class="bi bi-arrow-right"></i>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isSectionOpened">
+          <div class="items" (click)="onBack()">
+            <span>Back</span>
+            <i class="bi bi-arrow-left"></i>
+          </div>
+          <div class="items" *ngFor="let sections of selectedProductSections">
+            <span>{{sections}}</span>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="logo">
-      <img ngSrc="../../assets/logo.png" alt="logo" height="38" width="100">
+      <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100">
     </div>
     <div class="action-icons">
       <button>

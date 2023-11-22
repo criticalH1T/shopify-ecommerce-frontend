@@ -26,6 +26,8 @@ export class NavigationBarComponent {
   ]
   isDesktopView: boolean = window.innerWidth > 990;
   showBurgerMenu: boolean = false;
+  isSectionOpened: boolean = false;
+  selectedProductSections: string[] = [];
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -49,14 +51,35 @@ export class NavigationBarComponent {
 
   onWindowResize(event: any) {
     this.isDesktopView = event.target.innerWidth > 990;
+    if (this.showBurgerMenu){
+      document.getElementById("overlay").style.display = "block";
+    }
+
   }
 
   toggleBurgerMenu() {
     this.showBurgerMenu = !this.showBurgerMenu;
-    console.log(this.showBurgerMenu)
+    if (this.showBurgerMenu) {
+      document.getElementById("overlay").style.display = "block";
+      this.onBack();
+    } else {
+      document.getElementById("overlay").style.display = "none";
+    }
   }
 
-  openNavigationSections(name: string) {
+  openNavigationSections(product: any ,name: string) {
+    if (product.sections) {
+      this.isSectionOpened = true;
+      this.products.forEach(product => {
+        if (product.name === name) {
+          this.selectedProductSections = this.selectedProductSections.concat(product.sections);
+        }
+      })
+    }
+  }
 
+  onBack() {
+    this.isSectionOpened = false;
+    this.selectedProductSections = [];
   }
 }
