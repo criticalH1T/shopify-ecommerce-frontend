@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductLandingPageComponent } from './product-landing-page/product-landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { HeaderComponent } from './header/header.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {NgOptimizedImage} from "@angular/common";
@@ -18,7 +18,7 @@ import {FormsModule} from "@angular/forms";
     ProductLandingPageComponent,
     LoginComponent,
     CheckoutComponent,
-    HeaderComponent,
+    NavigationBarComponent,
     ProductListComponent,
     ProductDetailComponent
   ],

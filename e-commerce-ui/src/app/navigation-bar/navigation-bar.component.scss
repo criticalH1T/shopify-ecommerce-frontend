@@ -56,7 +56,18 @@
     gap: 20px;
   }
 
+  .logo {
+    cursor: pointer;
+  }
+
   .action-icons {
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      margin: 0;
+    }
+    width: 100px;
     i {
       padding: 12px;
       font-size: 20px;
@@ -64,6 +75,32 @@
     }
     i:hover {
       font-size: 22px;
+    }
+  }
+}
+
+@media (max-width: 990px) {
+  .menu {
+    width: 50px;
+    i {
+      padding: 12px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+    i:hover {
+      font-size: 24px;
+    }
+    button {
+      border: none;
+      background: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-navigation {
+      height: 100%;
+      width: 400px;
+      background: red;
     }
   }
 }

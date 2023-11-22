@@ -1,11 +1,11 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  selector: 'app-navigation-bar',
+  templateUrl: './navigation-bar.component.html',
+  styleUrls: ['./navigation-bar.component.scss']
 })
-export class HeaderComponent {
+export class NavigationBarComponent {
   products: any[] = [
     {
       "name": "Drinks",
@@ -24,6 +24,8 @@ export class HeaderComponent {
       "isDropdownOpen": false
     }
   ]
+  isDesktopView: boolean = window.innerWidth > 990;
+  showBurgerMenu: boolean = false;
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
     if (!this.elementRef.nativeElement.contains(event.target)) {
@@ -33,6 +35,7 @@ export class HeaderComponent {
     }
   }
   constructor(private elementRef: ElementRef) {
+    window.addEventListener('resize', this.onWindowResize.bind(this))
   }
   toggleDropdown(name: string) {
     this.products.forEach(product => {
@@ -42,5 +45,14 @@ export class HeaderComponent {
         product.isDropdownOpen = false;
       }
     })
+  }
+
+  onWindowResize(event: any) {
+    this.isDesktopView = event.target.innerWidth > 990;
+  }
+
+  toggleBurgerMenu() {
+    this.showBurgerMenu = !this.showBurgerMenu;
+    console.log(this.showBurgerMenu)
   }
 }
