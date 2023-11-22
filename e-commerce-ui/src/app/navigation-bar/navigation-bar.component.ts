@@ -55,4 +55,8 @@ export class NavigationBarComponent {
     this.showBurgerMenu = !this.showBurgerMenu;
     console.log(this.showBurgerMenu)
   }
+
+  openNavigationSections(name: string) {
+
+  }
 }

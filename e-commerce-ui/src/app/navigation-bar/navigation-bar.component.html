@@ -35,11 +35,17 @@
       <button *ngIf="!showBurgerMenu" (click)="toggleBurgerMenu()">
         <i class="bi bi-list"></i>
       </button>
-      <button *ngIf="showBurgerMenu" (click)="toggleBurgerMenu()">
+      <button *ngIf="showBurgerMenu" class="close-button" (click)="toggleBurgerMenu()">
         <i class="bi bi-x-lg"></i>
       </button>
       <div class="menu-navigation" *ngIf="showBurgerMenu">
-        ll
+        <div class="items" *ngFor="let product of products" (click)="openNavigationSections(product.name)">
+          <span>{{product.name}}</span>
+          <i *ngIf="product.sections" class="bi bi-arrow-right"></i>
+        </div>
+      </div>
+      <div class="menu-navigation-selections">
+
       </div>
     </div>
     <div class="logo">
