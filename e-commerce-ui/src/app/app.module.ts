@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage, CommonModule } from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
         BrowserModule,
         AppRoutingModule,
         NgOptimizedImage,
-        FormsModule
+        FormsModule,
+        CommonModule,
+        BrowserAnimationsModule
     ],
   providers: [],
   bootstrap: [AppComponent]

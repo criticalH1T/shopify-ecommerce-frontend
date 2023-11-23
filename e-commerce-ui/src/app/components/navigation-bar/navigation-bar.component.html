@@ -32,14 +32,14 @@
 <ng-template #mobileView>
   <div id="overlay"></div>
   <div class="container">
-    <div class="menu">
+    <div class="side-menu" >
       <button *ngIf="!showBurgerMenu" (click)="toggleBurgerMenu()">
         <i class="bi bi-list"></i>
       </button>
       <button *ngIf="showBurgerMenu" class="close-button" (click)="toggleBurgerMenu()">
         <i class="bi bi-x-lg"></i>
       </button>
-      <div class="menu-navigation" *ngIf="showBurgerMenu">
+      <div class="menu-navigation" *ngIf="showBurgerMenu" [@slideInOut]="showBurgerMenu ? 'in' : 'out'">
         <ng-container *ngIf="!isSectionOpened">
           <div class="items" *ngFor="let product of products" (click)="openNavigationSections(product, product.name)">
             <span>{{product.name}}</span>

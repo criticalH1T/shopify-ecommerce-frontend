@@ -1,9 +1,22 @@
 import {Component, ElementRef, HostListener} from '@angular/core';
+import {animate, state, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss']
+  styleUrls: ['./navigation-bar.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({ transform: 'translateX(0)' })),
+      transition('void => *', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('200ms ease-in-out')
+      ]),
+      transition('* => void', [
+        animate('200ms ease-in-out', style({ transform: 'translateX(-100%)' }))
+      ])
+    ])
+  ]
 })
 export class NavigationBarComponent {
   products: any[] = [
@@ -24,7 +37,7 @@ export class NavigationBarComponent {
       "isDropdownOpen": false
     }
   ]
-  isDesktopView: boolean = window.innerWidth > 990;
+  isDesktopView: boolean = window.innerWidth > 960;
   showBurgerMenu: boolean = false;
   isSectionOpened: boolean = false;
   selectedProductSections: string[] = [];
@@ -50,8 +63,8 @@ export class NavigationBarComponent {
   }
 
   onWindowResize(event: any) {
-    this.isDesktopView = event.target.innerWidth > 990;
-    if (this.showBurgerMenu){
+    this.isDesktopView = event.target.innerWidth >= 960;
+    if (document.getElementById("overlay") && this.showBurgerMenu) {
       document.getElementById("overlay").style.display = "block";
     }
 

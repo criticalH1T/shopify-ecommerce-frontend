@@ -3,7 +3,7 @@
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  padding: 21px 51px;
+  padding: 20px 30px;
   background: white;
   margin: -8px;
 
@@ -63,13 +63,13 @@
   }
 
   .action-icons {
+    display: flex;
     button {
       border: none;
       background: none;
       padding: 0;
       margin: 0;
     }
-    width: 100px;
     i {
       padding: 12px;
       font-size: 20px;
@@ -81,56 +81,62 @@
   }
 }
 
-@media (max-width: 990px) {
-  .menu {
-    width: 50px;
-    i {
-      padding: 12px;
-      font-size: 22px;
-      cursor: pointer;
-    }
-    i:hover {
+.side-menu {
+  i {
+    padding: 12px;
+    font-size: 22px;
+    cursor: pointer;
+
+    &:hover {
       font-size: 24px;
     }
-    button {
-      border: none;
-      background: none;
-      padding: 0;
-      margin: 0;
+  }
+
+  button {
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .close-button {
+    i {
+      font-size: 20px;
     }
-    .close-button {
-      i{
-        font-size: 20px;
-      }
-    }
-    .menu-navigation {
-      height: 100%;
-      width: 400px;
+  }
+
+  .menu-navigation {
+    height: 100vh;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    top: 83px;
+    border-right: 2px solid black;
+    padding: 20px 0;
+    background: white;
+
+    .items {
       display: flex;
-      flex-direction: column;
-      position: absolute;
-      left: 0;
-      top: 85px;
-      border-right: 2px solid black;
-      padding: 20px 0;
-      background: white;
-      .items {
-        display: flex;
-        justify-content: space-between;
-        font-size: 18px;
-        padding: 20px 40px;
-        span {
-          font-size: 22px;
-        }
-        i {
-          padding: 0;
-          font-size: 20px;
-          cursor: pointer;
-        }
+      justify-content: space-between;
+      font-size: 18px;
+      padding: 20px 40px;
+      cursor: pointer;
+
+      span {
+        font-size: 22px;
+      }
+
+      i {
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
       }
     }
   }
 }
+
 #overlay {
   position: fixed;
   display: none;
