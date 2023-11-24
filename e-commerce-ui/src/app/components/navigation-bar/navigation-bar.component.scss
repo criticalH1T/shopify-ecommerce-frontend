@@ -26,6 +26,9 @@
       span:hover {
         text-decoration: underline black;
       }
+      span:focus {
+        text-decoration: underline black;
+      }
     }
     .dropdown-menu {
       display: flex;
@@ -64,7 +67,7 @@
 
   .action-icons {
     display: flex;
-    width: 80px; // for the icons so they don't move the whole header
+    width: 130px; // for the icons so they don't move the whole header
     button {
       border: none;
       background: none;
@@ -75,9 +78,9 @@
       padding: 12px;
       font-size: 20px;
       cursor: pointer;
-    }
-    i:hover {
-      font-size: 22px;
+      &:hover {
+        font-size: 22px;
+      }
     }
   }
 }
@@ -150,4 +153,7 @@
   bottom: 0;
   background-color: rgba(0,0,0,0.5);
   z-index: -2;
+}
+.active-button {
+  text-decoration: underline black;
 }

@@ -2,7 +2,7 @@
   <div class="container">
     <div class="left-group">
       <div class="logo">
-        <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100">
+        <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100" routerLink="/home">
       </div>
 
       <div class="dropdown" *ngFor="let product of products">
@@ -11,7 +11,7 @@
           <i *ngIf="product.sections" class="bi bi-chevron-down" [style.transform]="product.isDropdownOpen ? 'rotate(180deg)' : ''"></i>
         </button>
         <div class="dropdown-menu" *ngIf="product.isDropdownOpen && product.sections">
-          <button *ngFor="let item of product.sections" class="dropdown-item">
+          <button *ngFor="let item of product.sections" class="dropdown-item" (click)="navigateToPage(item)">
             <span>{{ item }}</span>
           </button>
         </div>
@@ -23,7 +23,10 @@
         <i class="bi bi-search"></i>
       </button>
       <button>
-        <i class="bi bi-bag"></i>
+        <i class="bi bi-bag" routerLink="/cart"></i>
+      </button>
+      <button>
+        <i class="bi bi-person" routerLink="/user-sign-in"></i>
       </button>
     </div>
   </div>
@@ -33,13 +36,13 @@
   <div id="overlay"></div>
   <div class="container">
     <div class="side-menu" >
-      <button *ngIf="!showBurgerMenu" (click)="toggleBurgerMenu()">
+      <button *ngIf="!isBurgerMenuOpen" (click)="toggleBurgerMenu()">
         <i class="bi bi-list"></i>
       </button>
-      <button *ngIf="showBurgerMenu" class="close-button" (click)="toggleBurgerMenu()">
+      <button *ngIf="isBurgerMenuOpen" class="close-button" (click)="toggleBurgerMenu()">
         <i class="bi bi-x-lg"></i>
       </button>
-      <div class="menu-navigation" *ngIf="showBurgerMenu" [@slideInOut]="showBurgerMenu ? 'in' : 'out'">
+      <div class="menu-navigation" *ngIf="isBurgerMenuOpen" [@slideInOut]="isBurgerMenuOpen ? 'in' : 'out'">
         <ng-container *ngIf="!isSectionOpened">
           <div class="items" *ngFor="let product of products" (click)="openNavigationSections(product, product.name)">
             <span>{{product.name}}</span>
@@ -51,21 +54,24 @@
             <span>Back</span>
             <i class="bi bi-arrow-left"></i>
           </div>
-          <div class="items" *ngFor="let sections of selectedProductSections">
-            <span>{{sections}}</span>
+          <div class="items" *ngFor="let section of selectedProductSections" (click)="navigateToPage(section)">
+            <span>{{section}}</span>
           </div>
         </ng-container>
       </div>
     </div>
     <div class="logo">
-      <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100">
+      <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100" routerLink="/home">
     </div>
     <div class="action-icons">
       <button>
         <i class="bi bi-search"></i>
       </button>
       <button>
-        <i class="bi bi-bag"></i>
+        <i class="bi bi-bag" routerLink="/cart"></i>
+      </button>
+      <button>
+        <i class="bi bi-person" routerLink="/user-sign-in"></i>
       </button>
     </div>
   </div>

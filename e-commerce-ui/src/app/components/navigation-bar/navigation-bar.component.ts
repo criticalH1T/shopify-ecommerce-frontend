@@ -1,5 +1,6 @@
-import {Component, ElementRef, HostListener} from '@angular/core';
+import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -38,7 +39,7 @@ export class NavigationBarComponent {
     }
   ]
   isDesktopView: boolean = window.innerWidth > 960;
-  showBurgerMenu: boolean = false;
+  isBurgerMenuOpen: boolean = false;
   isSectionOpened: boolean = false;
   selectedProductSections: string[] = [];
   @HostListener('document:click', ['$event'])
@@ -49,30 +50,37 @@ export class NavigationBarComponent {
       })
     }
   }
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,
+              private router: Router) {
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
   toggleDropdown(name: string) {
-    this.products.forEach(product => {
-      if (product.name == name) {
-        product.isDropdownOpen = !product.isDropdownOpen;
+    const targetProduct = this.products.find(product => product.name === name);
+    if (targetProduct) {
+      if (targetProduct.sections) {
+        targetProduct.isDropdownOpen = !targetProduct.isDropdownOpen;
       } else {
+        this.navigateToPage(name);
+      }
+    }
+    this.products.forEach(product => {
+      if (product !== targetProduct) {
         product.isDropdownOpen = false;
       }
-    })
+    });
   }
 
   onWindowResize(event: any) {
     this.isDesktopView = event.target.innerWidth >= 960;
-    if (document.getElementById("overlay") && this.showBurgerMenu) {
+    if (document.getElementById("overlay") && this.isBurgerMenuOpen) {
       document.getElementById("overlay").style.display = "block";
     }
 
   }
 
   toggleBurgerMenu() {
-    this.showBurgerMenu = !this.showBurgerMenu;
-    if (this.showBurgerMenu) {
+    this.isBurgerMenuOpen = !this.isBurgerMenuOpen;
+    if (this.isBurgerMenuOpen) {
       document.getElementById("overlay").style.display = "block";
       this.onBack();
     } else {
@@ -94,5 +102,19 @@ export class NavigationBarComponent {
   onBack() {
     this.isSectionOpened = false;
     this.selectedProductSections = [];
+  }
+
+  navigateToPage(name: string) {
+    let path: string = name.toLowerCase().replace(/ /g, '-');
+    this.router.navigate([path]).then(r => {
+      if (r) {
+        if(this.isDesktopView) {
+          this.products.forEach(product => product.isDropdownOpen = false);
+        } else {
+          this.isBurgerMenuOpen = false;
+          document.getElementById("overlay").style.display = "none";
+        }
+      }
+    })
   }
 }

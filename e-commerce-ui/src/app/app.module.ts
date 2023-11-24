@@ -12,6 +12,14 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { RecipesDetailComponent } from './components/recipes-detail/recipes-detail.component';
+import { OurStoryComponent } from './components/our-story/our-story.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { UserSignInComponent } from './components/user-sign-in/user-sign-in.component';
+import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +29,15 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     CheckoutComponent,
     NavigationBarComponent,
     ProductListComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    PageNotFoundComponent,
+    RecipesListComponent,
+    RecipesDetailComponent,
+    OurStoryComponent,
+    ContactUsComponent,
+    ShoppingCartComponent,
+    UserSignInComponent,
+    UserSignUpComponent
   ],
     imports: [
         BrowserModule,
