@@ -11,6 +11,8 @@ import {ContactUsComponent} from "./components/contact-us/contact-us.component";
 import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
 import {UserSignInComponent} from "./components/user-sign-in/user-sign-in.component";
 import {UserSignUpComponent} from "./components/user-sign-up/user-sign-up.component";
+import {categoryGuard} from "./guards/category.guard";
+import {productIdGuard} from "./guards/product-id.guard";
 
 const routes: Routes = [
   {
@@ -20,34 +22,46 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: ProductLandingPageComponent
+    component: ProductLandingPageComponent,
+    pathMatch: 'full'
   },
   {
     path: 'bundles',
-    component: ProductListComponent
+    component: ProductListComponent,
+    pathMatch: 'full'
   },
   {
     path: 'our-story',
-    component: OurStoryComponent
+    component: OurStoryComponent,
+    pathMatch: 'full'
   },
   {
     path: 'contact-us',
-    component: ContactUsComponent
+    component: ContactUsComponent,
+    pathMatch: 'full'
   },
   {
     path: 'cart',
-    component: ShoppingCartComponent
+    component: ShoppingCartComponent,
+    pathMatch: 'full'
   },
   {
     path: 'user-sign-in',
-    component: UserSignInComponent
+    component: UserSignInComponent,
+    pathMatch: 'full'
   },
   {
     path: 'user-sign-up',
-    component: UserSignUpComponent
+    component: UserSignUpComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'page-not-found',
+    component: PageNotFoundComponent
   },
   {
     path: 'recipes',
+    pathMatch: 'full',
     children: [
       {
         path: '',
@@ -61,6 +75,8 @@ const routes: Routes = [
   },
   {
     path: ':category',
+    canActivate: [categoryGuard],
+    canActivateChild: [productIdGuard],
     children: [
       {
         path: '',
@@ -68,13 +84,14 @@ const routes: Routes = [
       },
       {
         path: ':productId',
+        pathMatch: 'full',
         component: ProductDetailComponent
       }
-    ]
+    ],
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    redirectTo: '/page-not-found'
   }
 ];
 
