@@ -20,6 +20,7 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { UserSignInComponent } from './components/user-sign-in/user-sign-in.component';
 import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -40,12 +41,13 @@ import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.comp
     UserSignUpComponent
   ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        NgOptimizedImage,
-        FormsModule,
-        CommonModule,
-        BrowserAnimationsModule
+      BrowserModule,
+      AppRoutingModule,
+      NgOptimizedImage,
+      FormsModule,
+      CommonModule,
+      BrowserAnimationsModule,
+      HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

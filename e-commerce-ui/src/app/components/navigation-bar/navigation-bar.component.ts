@@ -23,7 +23,7 @@ export class NavigationBarComponent {
   products: any[] = [
     {
       "name": "Drinks",
-      "sections": ["Shop all", "Cold-pressed Juices", "Boosters", "Kombuchas", "Plant Milks", "Shakes", "Lemonades"],
+      "sections": ["Shop all", "Cold-pressed Juices", "Boosters", "Kombuchas", "Shakers", "Lemonades"],
       "isDropdownOpen": false
     },
     {
