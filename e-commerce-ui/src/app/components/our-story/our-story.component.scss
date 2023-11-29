@@ -35,10 +35,11 @@
 
       .banner-text {
         text-align: center;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: lighter;
         width: 100%;
-        overflow: auto;
+        margin: 0;
+        overflow: hidden;
       }
     }
   }
@@ -54,7 +55,7 @@
   .grid {
     width: 100%;
     height: auto;
-    margin-bottom: 6rem;
+    margin-bottom: 9rem;
 
     display: grid;
     grid-gap: 1.5rem;
@@ -69,23 +70,25 @@
       border: solid black 2px;
       background-color: white;
 
+      height: 100%;
       padding: 2rem;
       .item-image {
-        max-height: 18vh;
+        max-height: 15vh;
         margin: 0;
       }
       .item-title {
         text-align: center;
-        font-size: 2rem;
+        font-size: 1.8rem;
         font-weight: lighter;
-        margin: 1rem 0 0 0;
+        margin: 0;
+        padding: 1rem;
       }
       .item-text {
         text-align: center;
         font-size: 1.25rem;
         font-weight: lighter;
-        margin: 1rem 0 0 0;
-        overflow: auto;
+        margin: 0;
+        overflow: hidden;
       }
     }
   }
@@ -160,6 +163,8 @@
   }
 }
 
+// ---------------- tablet view
+
 
 // banner(s) responsiveness
 
@@ -172,7 +177,7 @@
       align-items: center;
 
       .banner-box {
-        //width: 100%;
+        width: 100%;
         max-width: fit-content;
         position: static;
 
@@ -182,6 +187,21 @@
         left: 0;
         transform: none;
         overflow: auto;
+
+        height: 100%;
+
+        .banner-text {
+          font-size: 1.75rem;
+          margin: 0;
+        }
+
+        .organic-title {
+          font-size: 1.5rem;
+        }
+
+        .organic-text {
+          font-size: 1.15rem;
+        }
 
       }
     }
@@ -196,7 +216,7 @@
       width: 100%;
       height: auto;
       display: grid;
-      grid-gap: 2rem;
+      grid-gap: 7rem;
       grid-template-columns: repeat(1, 1fr);
       grid-template-rows: 400px;
       .grid-items {
@@ -218,6 +238,8 @@
   }
 }
 
+// freshness container
+
 @media screen and (max-width: 960px) {
   .container {
     .freshness-parent {
@@ -226,6 +248,7 @@
         flex-direction: column;
         flex:1;
         max-height: 800px;
+        width: 100%;
         .freshness-image {
           width: 100%;
           height: 50%;
@@ -233,7 +256,130 @@
         .freshness-content {
           height: 50%;
           .freshness-title  {
+            font-size: 2.5rem;
 
+          }
+          .freshness-text {
+
+          }
+        }
+      }
+    }
+  }
+}
+
+// ---------------- mobile view
+
+// top banner
+
+@media screen and (max-width: 375px) {
+  .container {
+    .banner-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+
+      .banner-box {
+        width: 100%;
+        max-width: fit-content;
+        position: static;
+
+        padding: 1.5rem;
+        margin: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        overflow: auto;
+        .banner-text {
+          font-size: 1.2rem;
+          margin: 0;
+        }
+
+      }
+    }
+  }
+}
+
+// banner(s) responsiveness
+
+@media screen and (max-width: 375px) {
+  .container {
+    .banner-container {
+      .banner-box {
+        width: 100%;
+        max-width: fit-content;
+        position: static;
+
+        padding: 1.5rem;
+        margin: 0;
+        top: 0;
+        left: 0;
+        transform: none;
+        overflow: auto;
+
+        .organic-title {
+          font-size: 1.5rem;
+        }
+        .organic-text {
+          font-size: 0.75rem;
+          margin-top: 1rem;
+        }
+
+      }
+    }
+  }
+}
+
+// grid container
+
+@media screen and (max-width: 375px) {
+  .container {
+    .grid {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-gap: 7rem;
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: 400px;
+      .grid-items {
+        .item-image {
+          max-height: 16vh;
+          max-width: 12vh;
+        }
+        .item-title {
+          font-size: 1.5rem;
+        }
+        .item-text {
+          font-size: 1rem;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+// freshness container
+
+@media screen and (max-width: 375px) {
+  .container {
+    .freshness-parent {
+      .freshness-container {
+        display: flex;
+        flex-direction: column;
+        flex:1;
+        max-height: 800px;
+        width: 100%;
+        .freshness-image {
+          width: 100%;
+          height: 50%;
+        }
+        .freshness-content {
+          height: 50%;
+          padding: 1.5rem;
+          .freshness-title  {
+            font-size: 1.5rem;
           }
           .freshness-text {
 
