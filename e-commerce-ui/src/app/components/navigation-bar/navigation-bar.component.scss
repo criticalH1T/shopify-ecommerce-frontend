@@ -3,9 +3,11 @@
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  padding: 20px 30px;
+  padding: 1.8rem 2rem;
   background: white;
-  margin: -8px;
+  margin: -0.5rem;
+  position: relative;
+  z-index: 1000;
 
   .dropdown {
     display: flex;
@@ -16,41 +18,49 @@
     .dropdown-toggle {
       border: none;
       background: white;
-      padding: 12px;
-      letter-spacing: 0.63px;
+      padding: 0.8rem;
+      letter-spacing: 0.06rem;
       cursor: pointer;
-      .bi-chevron-down{
-        padding: 0 5px;
+
+      .bi-chevron-down {
+        padding: 0 0.3rem;
         display: inline-block;
       }
+
       span:hover {
         text-decoration: underline black;
       }
+
       span:focus {
         text-decoration: underline black;
       }
     }
+
     .dropdown-menu {
       display: flex;
       flex-direction: column;
       position: absolute;
-      margin: 45px;
-      border: 2px black solid;
+      margin: 3rem;
+      border: 0.13rem black solid;
       align-items: flex-start;
-      padding: 25px 0;
+      padding: 1.6rem 0;
+      background-color: white;
+
       .dropdown-item {
         border: none;
         background: white;
-        padding: 8px 25px;
+        padding: 0.5rem 1.6rem;
         cursor: pointer;
       }
+
       span:hover {
         color: black;
       }
     }
+
     span {
       font-family: monospace;
-      font-size: 15px;
+      font-size: 0.9rem;
       color: rgba(2, 9, 18, 0.75);
     }
 
@@ -58,7 +68,7 @@
 
   .left-group {
     display: flex;
-    gap: 20px;
+    gap: 1.3rem;
   }
 
   .logo {
@@ -67,33 +77,35 @@
 
   .action-icons {
     display: flex;
-    width: 130px; // for the icons so they don't move the whole header
+    width: 8rem; // for the icons so they don't move the whole header
     button {
       border: none;
       background: none;
       padding: 0;
       margin: 0;
     }
+
     i {
-      padding: 12px;
-      font-size: 20px;
+      padding: 0.8rem;
+      font-size: 1.3rem;
       cursor: pointer;
+
       &:hover {
-        font-size: 22px;
+        font-size: 1.4rem;
       }
     }
   }
 }
 
 .side-menu {
-  width: 50px; // for the icons so they don't move the whole header
+  width: 4.5rem; // for the icons so they don't move the whole header
   i {
-    padding: 12px;
-    font-size: 22px;
+    padding: 0.8rem;
+    font-size: 1.4rem;
     cursor: pointer;
 
     &:hover {
-      font-size: 24px;
+      font-size: 1.5rem;
     }
   }
 
@@ -106,7 +118,7 @@
 
   .close-button {
     i {
-      font-size: 20px;
+      font-size: 1.3rem;
     }
   }
 
@@ -117,25 +129,25 @@
     flex-direction: column;
     position: absolute;
     left: 0;
-    top: 83px;
+    top: 6.3rem;
     border-right: 2px solid black;
-    padding: 20px 0;
+    padding: 1.3rem 0;
     background: white;
 
     .items {
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
-      padding: 20px 40px;
+      font-size: 1.1rem;
+      padding: 1.3rem 3rem;
       cursor: pointer;
 
       span {
-        font-size: 22px;
+        font-size: 1.4rem;
       }
 
       i {
         padding: 0;
-        font-size: 20px;
+        font-size: 1.3rem;
         cursor: pointer;
       }
     }
@@ -151,9 +163,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.5);
-  z-index: -2;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
 }
+
 .active-button {
   text-decoration: underline black;
 }

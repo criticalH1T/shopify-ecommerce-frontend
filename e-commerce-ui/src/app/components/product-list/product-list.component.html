@@ -1,1 +1,43 @@
-<p>product-list works!</p>
+<div class="container">
+
+  <div class="category-info" *ngFor="let info of categoryBasedInformation">
+    <h1 class="category-title" *ngIf="info.category === activeCategory">
+      {{info.title}}
+    </h1>
+
+    <p class="category-description" *ngIf="info.category === activeCategory">
+      {{info.description}}
+    </p>
+  </div>
+
+  <div class="filters">
+    <div class="filter-container" *ngFor="let item of dropdownButtons">
+      <span>{{item.type}}</span>
+      <div class="dropdown">
+        <button class="dropdown-toggle" type="button" (click)="toggleDropdown(item.type)">
+          <span>{{item.filterName}}</span>
+          <i class="bi bi-chevron-down" [style.transform]="item.isDropdownOpened ? 'rotate(180deg)' : ''"></i>
+        </button>
+        <div class="dropdown-menu" *ngIf="item.isDropdownOpened">
+          <button class="dropdown-item reset" (click)="resetFilter(item.type)">
+            <span>Reset</span>
+          </button>
+          <button *ngFor="let filterName of item.sections" class="dropdown-item"
+                  (click)="FilterBy(item.type, filterName)">
+            <span>{{ filterName }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="grid">
+    <div class="product-card" *ngFor="let product of productList">
+      <img src="{{product.imageUrl}}">
+      <h4 class="product-title" (click)="navigateToProductDetails(product.id)">{{product.name}}</h4>
+      <p class="product-price">{{product.price}}</p>
+    </div>
+  </div>
+
+</div>

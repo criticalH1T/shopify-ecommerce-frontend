@@ -61,7 +61,6 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
-    pathMatch: 'full',
     children: [
       {
         path: '',
