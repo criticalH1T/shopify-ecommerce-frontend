@@ -1,6 +1,8 @@
-import {Component, ElementRef, HostListener, ViewChild} from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
+import {Products} from "../../services/helper.service";
+
 
 @Component({
   selector: 'app-navigation-bar',
@@ -8,13 +10,13 @@ import {Router} from "@angular/router";
   styleUrls: ['./navigation-bar.component.scss'],
   animations: [
     trigger('slideInOut', [
-      state('in', style({ transform: 'translateX(0)' })),
+      state('in', style({transform: 'translateX(0)'})),
       transition('void => *', [
-        style({ transform: 'translateX(-100%)' }),
+        style({transform: 'translateX(-100%)'}),
         animate('200ms ease-in-out')
       ]),
       transition('* => void', [
-        animate('200ms ease-in-out', style({ transform: 'translateX(-100%)' }))
+        animate('200ms ease-in-out', style({transform: 'translateX(-100%)'}))
       ])
     ])
   ]
@@ -23,11 +25,11 @@ export class NavigationBarComponent {
   products: any[] = [
     {
       "name": "Drinks",
-      "sections": ["Shop all", "Cold-pressed Juices", "Boosters", "Kombuchas", "Shakers", "Lemonades"],
+      "sections": [Products.ALL_PRODUCTS, Products.COLD_PRESSED_JUICES, Products.BOOSTERS, Products.KOMBUCHAS, Products.SHAKERS, Products.LEMONADES],
       "isDropdownOpen": false
     },
     {
-      "name": "Bundles"
+      "name": Products.BUNDLES
     },
     {
       "name": "Recipes"
@@ -42,18 +44,20 @@ export class NavigationBarComponent {
   isBurgerMenuOpen: boolean = false;
   isSectionOpened: boolean = false;
   selectedProductSections: string[] = [];
+
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
-    if (!this.elementRef.nativeElement.contains(event.target)) {
+    if (!(event.target instanceof HTMLSpanElement)) {
       this.products.forEach(product => {
         product.isDropdownOpen = false;
       })
     }
   }
-  constructor(private elementRef: ElementRef,
-              private router: Router) {
+
+  constructor(private router: Router) {
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
+
   toggleDropdown(name: string) {
     const targetProduct = this.products.find(product => product.name === name);
     if (targetProduct) {
@@ -88,7 +92,7 @@ export class NavigationBarComponent {
     }
   }
 
-  openNavigationSections(product: any ,name: string) {
+  openNavigationSections(product: any, name: string) {
     if (product.sections) {
       this.isSectionOpened = true;
       this.products.forEach(product => {
@@ -108,7 +112,7 @@ export class NavigationBarComponent {
     let path: string = name.toLowerCase().replace(/ /g, '-');
     this.router.navigate([path]).then(r => {
       if (r) {
-        if(this.isDesktopView) {
+        if (this.isDesktopView) {
           this.products.forEach(product => product.isDropdownOpen = false);
         } else {
           this.isBurgerMenuOpen = false;
