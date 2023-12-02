@@ -1,7 +1,7 @@
 import {Component, HostListener} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
-import {Products} from "../../services/helper.service";
+import {HelperService, Products} from "../../services/helper.service";
 
 
 @Component({
@@ -54,7 +54,8 @@ export class NavigationBarComponent {
     }
   }
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private helperService: HelperService) {
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
 
@@ -100,6 +101,8 @@ export class NavigationBarComponent {
           this.selectedProductSections = this.selectedProductSections.concat(product.sections);
         }
       })
+    } else {
+      this.navigateToPage(name);
     }
   }
 
@@ -109,7 +112,7 @@ export class NavigationBarComponent {
   }
 
   navigateToPage(name: string) {
-    let path: string = name.toLowerCase().replace(/ /g, '-');
+    let path: string = this.helperService.transformToRouterString(name);
     this.router.navigate([path]).then(r => {
       if (r) {
         if (this.isDesktopView) {

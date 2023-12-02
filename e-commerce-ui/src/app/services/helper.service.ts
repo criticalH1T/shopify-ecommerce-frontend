@@ -62,4 +62,8 @@ export class HelperService {
         return holderList;
     }
   }
+
+  transformToRouterString(string: string) {
+    return string.toLowerCase().replace(/ /g, '-');
+  }
 }

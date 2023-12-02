@@ -106,13 +106,13 @@ export class ProductListComponent implements OnInit {
   private filterProductsByCategory(products: Product[]): void {
     this.productList.push(
       ...products.filter(product =>
-        product.categoryCategoryName.toLowerCase().replace(/ /g, '-') === this.activeCategory
+        this.helperService.transformToRouterString(product.categoryCategoryName) === this.activeCategory
       )
     );
   }
 
-  navigateToProductDetails(id: number) {
-    this.router.navigate([`${this.activeCategory}/${id}`])
+  navigateToProductDetails(id: number, category: string) {
+    this.router.navigate([`${this.helperService.transformToRouterString(category)}/${id}`])
   }
 
   FilterBy(filterType: string, subFilterName: string) {

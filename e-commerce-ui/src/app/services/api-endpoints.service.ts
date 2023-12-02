@@ -1,3 +1,5 @@
+import {HelperService} from "./helper.service";
+
 export interface Product {
   id: number;
   categoryId: number;
@@ -26,10 +28,11 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class ApiEndpointsService {
   private apiUrl = "http://localhost:8080";
-  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJldmEuY29uZXZza2lAZ21haWwuY29tIiwiaWF0IjoxNzAxNTM0Nzc3LCJleHAiOjE3MDE1MzYyMTd9.AwJLbZpoqTYKT5lEWOu8i852dokxACajD5G6DjPuy3U";
+  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJldmEuY29uZXZza2lAZ21haWwuY29tIiwiaWF0IjoxNzAxNTUxNjA0LCJleHAiOjE3MDE1NTMwNDR9.QVYfJtWKOhz79y1Jop_UbUkGQapyynBk8RHdGjGW6ZI";
   private headers = new HttpHeaders();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private helperService: HelperService) {
     this.headers = this.headers.set('Authorization', 'Bearer ' + this.bearerToken);
   }
 
@@ -43,14 +46,14 @@ export class ApiEndpointsService {
 
   isCategoryValid(categoryName: string): Observable<boolean> {
     return this.getCategories().pipe(
-      map(categories => categories.some(category => category.categoryName.toLowerCase().replace(/ /g, '-') === categoryName)),
+      map(categories => categories.some(category => this.helperService.transformToRouterString(category.categoryName) === categoryName)),
       catchError(() => of(false))
     );
   }
 
   isProductValidInCategory(productId: string, categoryName: string): Observable<boolean> {
     return this.getProducts().pipe(
-      map(products => products.some(product => product.id.toString() === productId && product.categoryCategoryName.toLowerCase().replace(/ /g, '-') === categoryName)),
+      map(products => products.some(product => product.id.toString() === productId && this.helperService.transformToRouterString(product.categoryCategoryName) === categoryName)),
       catchError(() => of(false))
     )
   }

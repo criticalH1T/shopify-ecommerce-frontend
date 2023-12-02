@@ -35,8 +35,10 @@
   <div class="grid">
     <div class="product-card" *ngFor="let product of productList">
       <img src="{{product.imageUrl}}">
-      <h4 class="product-title" (click)="navigateToProductDetails(product.id)">{{product.name}}</h4>
-      <p class="product-price">{{product.price}}</p>
+      <div class="product-card-info">
+        <h4 class="product-title" (click)="navigateToProductDetails(product.id, product.categoryCategoryName)">{{product.name}}</h4>
+        <p class="product-price">{{product.price}}</p>
+      </div>
     </div>
   </div>
 
