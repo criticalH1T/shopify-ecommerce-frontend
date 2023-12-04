@@ -1,5 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 import {HelperService, ProductFilters, Products, Routes} from "../../services/helper.service";
@@ -76,7 +76,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(private apiEndpointService: ApiEndpointsService,
               private helperService: HelperService,
-              private router: Router) {
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
 
   }
 
@@ -93,12 +94,12 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProductsForCategory(): void {
-    this.apiEndpointService.getProducts().subscribe(products => {
+    this.activatedRoute.data.subscribe(products => {
       this.productList = [];
       if (this.activeCategory === 'shop-all') {
-        this.productList.push(...products);
+        this.productList.push(...products['resolver']);
       } else {
-        this.filterProductsByCategory(products);
+        this.filterProductsByCategory(products['resolver']);
       }
     });
   }

@@ -13,23 +13,14 @@ export class RecipesDetailComponent implements OnInit {
   recipe: Recipe;
   product: Product | null;
 
-  constructor(private helperService: HelperService,
-              private apiEndPointService: ApiEndpointsService,
-              private router: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    this.helperService.recipeDetail.subscribe(recipe => {
-      if (recipe == null) {
-        const recipeId: string = this.router.snapshot.paramMap.get('recipeId');
-        this.apiEndPointService.getRecipeById(recipeId).subscribe(recipe => {
-          this.recipe = recipe;
-          this.product = recipe.product;
-        });
-      } else {
-        this.recipe = recipe;
-        this.product = recipe.product;
-      }
+    const recipeId: string = this.activatedRoute.snapshot.paramMap.get('recipeId');
+    this.activatedRoute.data.subscribe(recipes => {
+      this.recipe = recipes['resolver'].find(recipe => recipe.id == recipeId);
+      this.product = this.recipe.product;
     })
   }
 

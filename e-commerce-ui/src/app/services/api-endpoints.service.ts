@@ -37,8 +37,8 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ApiEndpointsService {
   private apiUrl = "http://localhost:8080";
-  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmVFbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE3MDE3MjY5NTAsImV4cCI6MTcwMTgzMDYzMH0.x2gqTmzW-PayOPlfcxUVPJoS-jkmuTATWkUSrSUSuu4";
-  private readonly headers = new HttpHeaders();
+  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJldmEuY29uZXZza2lAZ21haWwuY29tIiwiaWF0IjoxNzAxNzI5MTk1LCJleHAiOjE3MDE4MzI4NzV9.wAl4it9RlHR5Ti_44_4SoLh6i7Oyu-qtdDqaCYfTNds";
+  private headers = new HttpHeaders();
 
   constructor(private http: HttpClient,
               private helperService: HelperService) {

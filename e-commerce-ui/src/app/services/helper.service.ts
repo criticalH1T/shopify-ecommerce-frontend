@@ -30,6 +30,7 @@ export enum Routes {
 }
 
 import {Injectable} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +38,7 @@ import {Injectable} from '@angular/core';
 export class HelperService {
 
   recipeDetail: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
   }
 
   productListFilters(filterName: string, list: any): any {

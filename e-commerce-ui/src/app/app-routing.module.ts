@@ -13,7 +13,9 @@ import {UserSignInComponent} from "./components/user-sign-in/user-sign-in.compon
 import {UserSignUpComponent} from "./components/user-sign-up/user-sign-up.component";
 import {categoryGuard} from "./guards/category.guard";
 import {productIdGuard} from "./guards/product-id.guard";
+import {productsResolver} from "./resolvers/products.resolver";
 import {recipeIdGuard} from "./guards/recipe-id.guard";
+import {recipesResolver} from "./resolvers/recipes.resolver";
 
 const routes: Routes = [
   {
@@ -63,6 +65,7 @@ const routes: Routes = [
   },
   {
     path: 'recipes',
+    resolve: {resolver: recipesResolver},
     canActivateChild: [recipeIdGuard],
     children: [
       {
@@ -80,6 +83,7 @@ const routes: Routes = [
     path: ':category',
     canActivate: [categoryGuard],
     canActivateChild: [productIdGuard],
+    resolve: {resolver: productsResolver},
     children: [
       {
         path: '',
