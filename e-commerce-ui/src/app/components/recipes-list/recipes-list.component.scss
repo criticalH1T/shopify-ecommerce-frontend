@@ -8,7 +8,7 @@
     grid-gap: 2rem;
     margin-bottom: 6rem;
     .image-container {
-      height: 600px;
+      height: 450px;
       width: 100%;
       overflow: hidden;
     }
@@ -55,12 +55,29 @@
       grid-template-columns: 1fr;
     }
     .grid-item {
-      .item-image {
-        object-fit: cover;
+      .image-container {
+        .item-image {
+          object-fit: cover;
+        }
       }
       .item-content {
         .item-title {
           font-size: 1.75rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    .grid-container {
+      .grid-item {
+        .image-container {
+          height: 300px;
+        }
+        .item-image {
+          height: 300px;
         }
       }
     }
