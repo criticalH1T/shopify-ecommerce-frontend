@@ -17,19 +17,28 @@ export interface Category {
   categoryName: string;
 }
 
-import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable, of} from "rxjs";
-import {catchError, map} from 'rxjs/operators';
-import {HttpHeaders} from '@angular/common/http';
+export interface Recipe {
+  id: number,
+  product: Product,
+  name: string,
+  description: string,
+  ingredients: [],
+  steps: [],
+  image_path: string
+}
+
+import { Injectable } from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import { Observable, of } from "rxjs";
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiEndpointsService {
   private apiUrl = "http://localhost:8080";
-  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJldmEuY29uZXZza2lAZ21haWwuY29tIiwiaWF0IjoxNzAxNTUxNjA0LCJleHAiOjE3MDE1NTMwNDR9.QVYfJtWKOhz79y1Jop_UbUkGQapyynBk8RHdGjGW6ZI";
-  private headers = new HttpHeaders();
+  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmVFbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE3MDE3MjY5NTAsImV4cCI6MTcwMTgzMDYzMH0.x2gqTmzW-PayOPlfcxUVPJoS-jkmuTATWkUSrSUSuu4";
+  private readonly headers = new HttpHeaders();
 
   constructor(private http: HttpClient,
               private helperService: HelperService) {
@@ -44,6 +53,21 @@ export class ApiEndpointsService {
     return this.http.get<Category[]>(`${this.apiUrl}/categories`, {headers: this.headers});
   }
 
+  getRecipes(): Observable<Recipe[]> {
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.headers });
+  }
+
+  getRecipeById(recipeId: string): Observable<Recipe> {
+    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, { headers: this.headers });
+  }
+
+  isRecipeValid(recipeId: string): Observable<boolean> {
+    return this.getRecipes().pipe(
+      map(recipes => recipes.some(recipe => recipe.id.toString() === recipeId)),
+      catchError(() => of(false))
+    );
+  }
+
   isCategoryValid(categoryName: string): Observable<boolean> {
     return this.getCategories().pipe(
       map(categories => categories.some(category => this.helperService.transformToRouterString(category.categoryName) === categoryName)),
@@ -55,6 +79,6 @@ export class ApiEndpointsService {
     return this.getProducts().pipe(
       map(products => products.some(product => product.id.toString() === productId && this.helperService.transformToRouterString(product.categoryCategoryName) === categoryName)),
       catchError(() => of(false))
-    )
+    );
   }
 }

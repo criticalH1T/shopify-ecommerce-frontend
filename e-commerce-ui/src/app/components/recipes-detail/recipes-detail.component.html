@@ -1,1 +1,57 @@
-<p>recipes-detail works!</p>
+<div class="container">
+  <div class="recipe-container">
+    <img class="recipe-image" [src]="recipe.image_path" [alt]="recipe.name" height="600px" width="100%">
+    <div class="recipe-content">
+      <h1 class="recipe-title"> {{ recipe.name }} </h1>
+      <p class="description">{{ recipe.description }}</p>
+      <p class="ingredients">Ingredients</p>
+      <ul class="ingredient-list">
+        <li class="ing-item" *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+      </ul>
+      <p class="steps">Steps</p>
+      <ol class="step-list" type="1">
+        <li class="step-item" *ngFor="let step of recipe.steps" >{{ step }}</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="back-button" routerLink="/recipes">
+    <span class="arrow">
+      <i class="bi bi-arrow-left"></i>
+    </span>
+    <button class="back-to-blog">
+      Back to blog
+    </button>
+  </div>
+
+
+<!--  <div class="product-container" *ngIf="product != null">-->
+<!--    <div class="image-container">-->
+<!--      <img class="product-image" src="../../../assets/grapefruit-kombucha-can.png" alt="Kombucha can">-->
+<!--    </div>-->
+<!--    <div class="product-content">-->
+<!--      <h2 class="product-title">{{ product.name }}</h2>-->
+<!--      <div class="price">-->
+<!--        <span class="price-text">${{ product.price }}</span>-->
+<!--      </div>-->
+<!--      <p class="product-ingredients">{{ product.description }}</p>-->
+<!--      <p class="size-title">Size</p>-->
+<!--      <button class="size-button">340 mL</button>-->
+<!--      <p class="quantity-title">Quantity</p>-->
+<!--      <div class="quantity-selection">-->
+<!--        <button class="input-minus" (click)="decreaseQuantity()">-</button>-->
+<!--        <input type="text" class="input-amount" [(ngModel)]="productQuantity" (ngModelChange)="checkQuantity()" >-->
+<!--        <button class="input-plus" (click)="increaseQuantity()">+</button>-->
+<!--      </div>-->
+<!--      <div class="cart-buy">-->
+<!--        <button class="cart">Add to cart</button>-->
+<!--        <button class="buy">Buy it now</button>-->
+<!--      </div>-->
+<!--      <div class="view-full-details">-->
+<!--        <a href="/" class="full-details">View full details</a>-->
+<!--        <i class="bi bi-arrow-right"></i>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
+</div>
