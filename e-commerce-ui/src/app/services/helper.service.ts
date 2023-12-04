@@ -1,3 +1,5 @@
+import {BehaviorSubject} from "rxjs";
+
 export enum ProductFilters {
   ALPHABETICALLY_ASCENDING = 'Alphabetically, A-Z',
   ALPHABETICALLY_DESCENDING = 'Alphabetically, Z-A',
@@ -34,6 +36,7 @@ import {Injectable} from '@angular/core';
 })
 export class HelperService {
 
+  recipeDetail: BehaviorSubject<any> = new BehaviorSubject<any>(null);
   constructor() {
   }
 
@@ -42,22 +45,16 @@ export class HelperService {
     switch (filterName) {
       case ProductFilters.ALPHABETICALLY_ASCENDING:
         return holderList.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-        break;
       case ProductFilters.ALPHABETICALLY_DESCENDING:
         return holderList.sort((a, b) => b.name.toLowerCase().localeCompare(a.name.toLowerCase()));
-        break;
       case ProductFilters.PRICE_ASCENDING:
         return holderList.sort((a, b) => a.price - b.price);
-        break;
       case ProductFilters.PRICE_DESCENDING:
         return holderList.sort((a, b) => b.price - a.price);
-        break;
       case ProductFilters.IN_STOCK:
         return holderList.filter(item => item.stockQuantity > 0);
-        break;
       case ProductFilters.OUT_OF_STOCK:
         return holderList.filter(item => item.stockQuantity < 0);
-        break;
       default:
         return holderList;
     }

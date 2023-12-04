@@ -1,2 +1,14 @@
-<p>recipes-list works!</p>
-<router-outlet></router-outlet>
+<div class="container">
+  <h1 class="title">Recipes</h1>
+  <div class="grid-container">
+    <div class="grid-item" *ngFor="let item of recipes">
+      <div class="image-container">
+        <img class="item-image" [src] = "item.image_path" [alt] = "item.name" height="450px" width="100%">
+      </div>
+      <div class="item-content">
+        <h3 class="item-title" (click)="navigateToRecipeDetails(item)">{{ item.name }}</h3>
+        <p class="item-text">{{ item.description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

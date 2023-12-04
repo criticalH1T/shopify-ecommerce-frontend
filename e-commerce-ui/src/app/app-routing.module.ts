@@ -13,6 +13,7 @@ import {UserSignInComponent} from "./components/user-sign-in/user-sign-in.compon
 import {UserSignUpComponent} from "./components/user-sign-up/user-sign-up.component";
 import {categoryGuard} from "./guards/category.guard";
 import {productIdGuard} from "./guards/product-id.guard";
+import {recipeIdGuard} from "./guards/recipe-id.guard";
 
 const routes: Routes = [
   {
@@ -57,10 +58,12 @@ const routes: Routes = [
   },
   {
     path: 'page-not-found',
+    pathMatch: 'full',
     component: PageNotFoundComponent
   },
   {
     path: 'recipes',
+    canActivateChild: [recipeIdGuard],
     children: [
       {
         path: '',
@@ -68,6 +71,7 @@ const routes: Routes = [
       },
       {
         path: ':recipeId',
+        pathMatch: 'full',
         component: RecipesDetailComponent
       }
     ]
