@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApiEndpointsService, Product, Recipe} from "../../services/api-endpoints.service";
-import {HelperService} from "../../services/helper.service";
+import {Product, Recipe} from "../../services/api-endpoints.service";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
