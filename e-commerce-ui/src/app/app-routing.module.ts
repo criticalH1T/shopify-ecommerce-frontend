@@ -29,11 +29,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'bundles',
-    component: ProductListComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'our-story',
     component: OurStoryComponent,
     pathMatch: 'full'

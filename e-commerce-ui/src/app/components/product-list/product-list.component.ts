@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {filter} from "rxjs";
+import {filter, first} from "rxjs";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 import {HelperService, ProductFilters, Products, Routes} from "../../services/helper.service";
 
@@ -94,7 +94,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProductsForCategory(): void {
-    this.activatedRoute.data.subscribe(products => {
+    this.activatedRoute.data.pipe(first()).subscribe(products => {
       this.productList = [];
       if (this.activeCategory === 'shop-all') {
         this.productList.push(...products['resolver']);
