@@ -29,11 +29,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'bundles',
-    component: ProductListComponent,
-    pathMatch: 'full'
-  },
-  {
     path: 'our-story',
     component: OurStoryComponent,
     pathMatch: 'full'
@@ -49,12 +44,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'user-sign-in',
+    path: 'sign-in',
     component: UserSignInComponent,
     pathMatch: 'full'
   },
   {
-    path: 'user-sign-up',
+    path: 'sign-up',
     component: UserSignUpComponent,
     pathMatch: 'full'
   },

@@ -100,7 +100,7 @@
     }
   }
 
-  @media screen and (max-width: 50rem) {
+  @media screen and (max-width: 800px) {
     .grid {
       grid-template-columns: 1fr 1fr;
     }
@@ -111,7 +111,7 @@
     }
   }
 
-  @media screen and (max-width: 27rem) {
+  @media screen and (max-width: 420px) {
     .grid {
       grid-template-columns: 1fr;
     }

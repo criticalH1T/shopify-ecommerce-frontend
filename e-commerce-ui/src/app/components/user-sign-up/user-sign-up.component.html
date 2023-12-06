@@ -1,1 +1,50 @@
-<p>user-sign-up works!</p>
+<div class="container">
+  <div class="title">
+    <h2>Cheers to New Beginnings! Sign Up Today!</h2>
+    <p>Join Taste today! Sign up to savor the finest beverages delivered to your doorstep. Elevate your taste experience
+      with exclusive offers and refreshing choices. Let's toast to convenience and flavor – your sip-worthy journey
+      awaits!</p>
+  </div>
+  <div class="content">
+    <div class="illustration">
+      <img ngSrc="../../../assets/sign-up.svg" height="249" width="350" alt="decorative image">
+    </div>
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <div class="sing-in-form">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" formControlName="firstName"
+               placeholder="Enter your first name">
+        <app-validation-messages [control]="signupForm.get('firstName')"></app-validation-messages>
+
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" formControlName="lastName" placeholder="Enter your last name">
+        <app-validation-messages [control]="signupForm.get('lastName')"></app-validation-messages>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" formControlName="address" placeholder="Enter your address">
+        <app-validation-messages [control]="signupForm.get('address')"></app-validation-messages>
+
+        <label for="email">Email: </label>
+        <input id="email" type="text" name="email" formControlName="email" class="form-control"
+               placeholder="Enter your email"
+               autocomplete="email">
+        <app-validation-messages [control]="signupForm.get('email')"></app-validation-messages>
+
+        <label for="password">Password: </label>
+        <input id="password" type="password" name="password" class="form-control" formControlName="password"
+               placeholder="Enter your password">
+        <app-validation-messages [control]="signupForm.get('password')"></app-validation-messages>
+
+        <label for="reEnterPassword">Re-enter Password:</label>
+        <input type="password" id="reEnterPassword" name="reEnterPassword" formControlName="reEnterPassword"
+               placeholder="re-enter your password">
+        <app-validation-messages [control]="signupForm.get('reEnterPassword')"></app-validation-messages>
+
+        <button class="submit-button" type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+        <div class="sign-up-nav">
+          Already have an account ? <a routerLink="/sign-in">Sign In</a> here.
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
