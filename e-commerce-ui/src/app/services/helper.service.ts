@@ -31,6 +31,7 @@ export enum Routes {
 
 import {Injectable} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {AbstractControl} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -63,5 +64,18 @@ export class HelperService {
 
   transformToRouterString(string: string) {
     return string.toLowerCase().replace(/ /g, '-');
+  }
+
+  passwordValidator(control: AbstractControl): { [key: string]: boolean } | null {
+    const password: string = control.value;
+    const hasNumber = /\d/.test(password);
+    const hasCapital = /[A-Z]/.test(password);
+    const minLength = password.length >= 8;
+
+    if (!hasNumber || !hasCapital || !minLength) {
+      return { invalidPassword: true };
+    }
+
+    return null;
   }
 }

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {NgOptimizedImage, CommonModule } from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { UserSignInComponent } from './components/user-sign-in/user-sign-in.component';
 import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
 import {HttpClientModule} from "@angular/common/http";
+import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 
 @NgModule({
   declarations: [
@@ -38,17 +39,19 @@ import {HttpClientModule} from "@angular/common/http";
     ContactUsComponent,
     ShoppingCartComponent,
     UserSignInComponent,
-    UserSignUpComponent
+    UserSignUpComponent,
+    ValidationMessagesComponent
   ],
-    imports: [
-      BrowserModule,
-      AppRoutingModule,
-      NgOptimizedImage,
-      FormsModule,
-      CommonModule,
-      BrowserAnimationsModule,
-      HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgOptimizedImage,
+    FormsModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

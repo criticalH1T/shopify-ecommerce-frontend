@@ -1,0 +1,73 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.8rem;
+  margin: 1.8rem 0;
+  font-family: monospace;
+
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    .sing-in-form {
+      display: flex;
+      flex-direction: column;
+      border: solid 0.13rem black;
+      padding: 1.3rem;
+      gap: 0.6rem;
+      max-width: 20rem;
+      width: 20rem;
+
+      .submit-button {
+        font-size: 1rem;
+        color: rgba(2, 9, 18, 0.95);
+        border: solid 0.13rem rgb(249, 168, 38);
+        background: white;
+        font-family: monospace;
+        cursor: pointer;
+        height: 2rem;
+      }
+
+      .submit-button:disabled {
+        color: rgba(2, 9, 18, 0.55);
+        border: solid 0.13rem black;
+        cursor: not-allowed;
+      }
+
+      input {
+        height: 1.5rem;
+      }
+    }
+  }
+
+  .title {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-family: "Times New Roman", serif;
+    }
+  }
+
+  .illustration {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  @media screen and (max-width: 960px) {
+    .content {
+      flex-direction: column;
+
+      .sing-in-form {
+        width: 15rem;
+      }
+    }
+  }
+
+}

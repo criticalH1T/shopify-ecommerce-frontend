@@ -44,12 +44,12 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'user-sign-in',
+    path: 'sign-in',
     component: UserSignInComponent,
     pathMatch: 'full'
   },
   {
-    path: 'user-sign-up',
+    path: 'sign-up',
     component: UserSignUpComponent,
     pathMatch: 'full'
   },
