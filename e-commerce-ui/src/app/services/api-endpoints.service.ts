@@ -37,7 +37,7 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ApiEndpointsService {
   private apiUrl = "http://localhost:8080";
-  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJldmEuY29uZXZza2lAZ21haWwuY29tIiwiaWF0IjoxNzAxNzI5MTk1LCJleHAiOjE3MDE4MzI4NzV9.wAl4it9RlHR5Ti_44_4SoLh6i7Oyu-qtdDqaCYfTNds";
+  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmVFbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE3MDE4OTQyNDEsImV4cCI6MTcwMTk5NzkyMX0._FekrYeRUv7o9oA55tJrbRGe8HED7ExUKXsUhV0ajCc";
   private headers = new HttpHeaders();
 
   constructor(private http: HttpClient,
@@ -46,19 +46,19 @@ export class ApiEndpointsService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`, {headers: this.headers});
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, {withCredentials:true});
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {headers: this.headers});
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {withCredentials:true});
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.headers });
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, {withCredentials:true});
   }
 
   getRecipeById(recipeId: string): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, { headers: this.headers });
+    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials:true});
   }
 
   isRecipeValid(recipeId: string): Observable<boolean> {

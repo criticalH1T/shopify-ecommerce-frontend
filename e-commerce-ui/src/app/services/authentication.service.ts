@@ -33,7 +33,7 @@ export class AuthenticationService {
   }
 
   setAuthentication(signInInfo: UserSignIn): Observable<any> {
-    return this.http.post(this.authenticateApiUrl, signInInfo).pipe(
+    return this.http.post(this.authenticateApiUrl, signInInfo, {withCredentials: true}).pipe(
       catchError(err => this.catchAuthenticationError(err))
     );
   }

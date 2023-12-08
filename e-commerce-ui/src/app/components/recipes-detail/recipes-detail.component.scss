@@ -260,13 +260,13 @@
 @media screen and (max-width: 768px) {
   .container {
     .recipe-container {
+      .recipe-image {
+        height: 450px;
+      }
       .recipe-content {
         padding: 0;
         .recipe-title {
           font-size: 2rem;
-        }
-        .description {
-          width: 100%;
         }
         .ingredients {
           font-size: 1.5rem;
@@ -280,6 +280,41 @@
         .step-list {
           font-size: 1.25rem;
         }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .container {
+    .recipe-container {
+      .recipe-image {
+        height: 300px;
+      }
+      .recipe-content {
+        .recipe-title {
+          font-size: 1.5rem;
+        }
+        .description {
+          font-size: 1.25rem;
+        }
+        .ingredients {
+          font-size: 1.25rem;
+        }
+        .ingredient-list {
+          font-size: 1rem;
+        }
+        .steps {
+          font-size: 1.25rem;
+        }
+        .step-list {
+          font-size: 1rem;
+        }
+      }
+    }
+    .back-button {
+      .back-to-blog {
+        font-size: 1.25rem;
       }
     }
   }
