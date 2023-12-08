@@ -1,1 +1,38 @@
-<p>product-detail works!</p>
+<div class="container">
+  <div class="product">
+    <app-product [product]="product"></app-product>
+  </div>
+
+  <div class="faq">
+    <div class="faq-title">
+      <span>In case you are wondering</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq-details" *ngFor="let item of faq; let last = last" [ngClass]="{'last-item': last}">
+      <div class="dropdown-toggle" type="button" (click)="toggleDropdown(item.question)">
+        <i class="{{item.icon}}"></i>
+        <p>{{ item.question }}</p>
+        <i class="bi bi-chevron-down" [style.transform]="item.isOpened ? 'rotate(180deg)' : ''"></i>
+      </div>
+      <div class="dropdown-menu" *ngIf="item.isOpened">
+        <div class="dropdown-item">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="suggestions">
+    <h2>Try these flavors next</h2>
+    <div class="grid">
+      <div class="product-card" *ngFor="let product of suggestedProducts">
+        <img src="{{product.imageUrl}}">
+        <div class="product-card-info">
+          <h4 class="product-title"
+              (click)="helperService.navigateToProductDetails(product.id, product.categoryCategoryName)">{{product.name}}</h4>
+          <p class="product-price">{{product.price}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

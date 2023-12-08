@@ -22,6 +22,7 @@ import { UserSignInComponent } from './components/user-sign-in/user-sign-in.comp
 import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
 import {HttpClientModule} from "@angular/common/http";
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
+import { ProductComponent } from './components/product-detail/product/product.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
     ShoppingCartComponent,
     UserSignInComponent,
     UserSignUpComponent,
-    ValidationMessagesComponent
+    ValidationMessagesComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,

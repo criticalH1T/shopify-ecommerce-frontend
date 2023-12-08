@@ -75,7 +75,7 @@ export class ProductListComponent implements OnInit {
   }
 
   constructor(private apiEndpointService: ApiEndpointsService,
-              private helperService: HelperService,
+              public helperService: HelperService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
 
@@ -110,10 +110,6 @@ export class ProductListComponent implements OnInit {
         this.helperService.transformToRouterString(product.categoryCategoryName) === this.activeCategory
       )
     );
-  }
-
-  navigateToProductDetails(id: number, category: string) {
-    this.router.navigate([`${this.helperService.transformToRouterString(category)}/${id}`])
   }
 
   FilterBy(filterType: string, subFilterName: string) {
