@@ -14,7 +14,6 @@ export class UserSignInComponent implements OnInit {
   jwtToken: string = '';
 
   constructor(private formBuilder: FormBuilder,
-              private helperService: HelperService,
               private authenticationService: AuthenticationService) {
   }
 
@@ -26,12 +25,8 @@ export class UserSignInComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authenticationService.setAuthentication(this.signupForm.value).subscribe({
-        next: value => {
-          this.jwtToken = value.token;
-          window.sessionStorage.clear();
-          window.sessionStorage.setItem('userToken', this.jwtToken);
-        }
+    this.authenticationService.setAuthentication(this.signupForm.value).subscribe(data => {
+      console.log(data);
       }
     );
   }

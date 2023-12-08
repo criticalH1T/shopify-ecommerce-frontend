@@ -46,19 +46,19 @@ export class ApiEndpointsService {
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`, {headers: this.headers});
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, {withCredentials:true});
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {headers: this.headers});
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {withCredentials:true});
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, { headers: this.headers });
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, {withCredentials:true});
   }
 
   getRecipeById(recipeId: string): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, { headers: this.headers });
+    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials:true});
   }
 
   isRecipeValid(recipeId: string): Observable<boolean> {
