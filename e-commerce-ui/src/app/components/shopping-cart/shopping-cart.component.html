@@ -1,1 +1,54 @@
-<p>shopping-cart works!</p>
+<ng-container *ngIf="shoppingCartItems.length !==0; else emptyCart">
+  <div class="container">
+    <div class="title-section">
+      <h2 class="title">Your Shopping Cart</h2>
+      <button class="continue-shopping" routerLink="/shop-all">Continue shopping</button>
+    </div>
+
+    <div class="shopping-cart-table">
+      <table class="table">
+        <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let row of shoppingCartItems">
+          <td>
+            <div class="product-container">
+              <div class="product-image">
+                <img src="{{row.imageUrl}}">
+              </div>
+              <div class="product-info">
+                <h4 class="product-name">{{row.name}}</h4>
+                <p>${{row.price}}</p>
+                <p>{{row.volume}} ml</p>
+              </div>
+            </div>
+          </td>
+          <td>
+            {{ row.orderedQuantity }}
+            <i class="bi bi-trash" (click)="removeItem(row.id)"></i>
+          </td>
+          <td>${{ row.orderQuantitySubtotal }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="footer-section">
+      <p class="subtotal-price">Subtotal: ${{subtotalPrice}}</p>
+      <p>Taxes and shipping calculated at checkout</p>
+      <button class="check-out" routerLink="/checkout">Checkout</button>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #emptyCart>
+  <div class="container empty-cart">
+    <p class="empty-cart-title">Your Cart is Empty</p>
+    <button class="continue-shopping" routerLink="/shop-all">Continue shopping</button>
+  </div>
+</ng-template>

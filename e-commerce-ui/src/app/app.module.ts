@@ -23,6 +23,7 @@ import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.comp
 import {HttpClientModule} from "@angular/common/http";
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ProductComponent } from './components/product-detail/product/product.component';
+import { CheckOutComponent } from './components/check-out/check-out.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { ProductComponent } from './components/product-detail/product/product.co
     UserSignInComponent,
     UserSignUpComponent,
     ValidationMessagesComponent,
-    ProductComponent
+    ProductComponent,
+    CheckOutComponent
   ],
   imports: [
     BrowserModule,

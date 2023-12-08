@@ -1,0 +1,130 @@
+.container {
+  font-family: monospace;
+  padding: 0 1.8rem;
+
+  button {
+    cursor: pointer;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem;
+    border-top: 1px solid #dee2e6;
+    width: calc(100% / 3);
+    vertical-align: middle;
+    text-align: center;
+
+    .product-container {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      align-items: center;
+
+      img {
+        max-width: 7rem;
+        border: solid 0.06rem black;
+      }
+
+      .product-name {
+        width: 7rem;
+      }
+    }
+
+    .bi-trash {
+      position: relative;
+      top: 1px;
+      cursor: pointer;
+    }
+  }
+
+  .table thead th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+  }
+
+  .table tbody + tbody {
+    border-top: 2px solid #dee2e6;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+
+  .title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+
+    .continue-shopping {
+      border: none;
+      background-color: white;
+      text-decoration: underline;
+      font-size: 1rem;
+      font-family: monospace;
+    }
+  }
+
+
+  .footer-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+
+    .check-out {
+      background-color: black;
+      color: white;
+      border: none;
+      height: 2rem;
+      padding: 0 2rem;
+      font-size: 1.2rem;
+      font-family: monospace;
+    }
+
+    .subtotal-price {
+      font-size: 1.5rem;
+    }
+  }
+
+
+  @media screen and (max-width: 475px) {
+    .product-container {
+      flex-direction: column;
+      gap: 0 !important;
+
+      img {
+        max-width: 5rem !important;
+      }
+    }
+  }
+}
+
+.empty-cart {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+
+  .empty-cart-title {
+    font-size: 3rem;
+  }
+
+  .continue-shopping {
+    background-color: black;
+    color: white;
+    border: none;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-family: monospace;
+    padding: 0 2rem;
+  }
+}

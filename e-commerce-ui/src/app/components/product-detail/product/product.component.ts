@@ -1,17 +1,32 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../../../services/api-endpoints.service";
 import {HelperService} from "../../../services/helper.service";
+import {ShoppingCartService} from "../../../services/shopping-cart.service";
+import {filter} from "rxjs";
+import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent{
+export class ProductComponent implements OnInit {
   @Input() product: Product;
   productQuantity: number = 1;
 
-  constructor(private helperService: HelperService) {
+  constructor(private shoppingCartService: ShoppingCartService,
+              private router: Router) {
+  }
+
+  ngOnInit(): void {
+    this.handleRouteChange();
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+    ).subscribe(() => this.handleRouteChange());
+  }
+
+  handleRouteChange() {
+    this.productQuantity = 1;
   }
 
   onInputChange() {
@@ -30,17 +45,10 @@ export class ProductComponent{
     }
   }
 
-  addToCart() {
-    const products = this.countProductQuantity(this.productQuantity);
-    this.helperService.productsInCart.next(products);
-  }
-
-  countProductQuantity(quantity: number): Product[] {
-    const products: Product[] = [];
-    for (let i = 0; i < quantity; i++) {
-      products.push(this.product);
+  addToCart(product) {
+    for (let i = 0; i < this.productQuantity; i++) {
+      this.shoppingCartService.addToCart(product);
     }
     alert('Item added to your cart!');
-    return products;
   }
 }

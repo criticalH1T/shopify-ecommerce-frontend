@@ -40,7 +40,6 @@ import {Product} from "./api-endpoints.service";
 export class HelperService {
 
   recipeDetail: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  productsInCart: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(null)
   constructor(private router: Router) {
   }
 

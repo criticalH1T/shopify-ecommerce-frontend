@@ -16,6 +16,7 @@ import {productIdGuard} from "./guards/product-id.guard";
 import {productsResolver} from "./resolvers/products.resolver";
 import {recipeIdGuard} from "./guards/recipe-id.guard";
 import {recipesResolver} from "./resolvers/recipes.resolver";
+import {CheckoutComponent} from "./components/checkout/checkout.component";
 
 const routes: Routes = [
   {
@@ -51,6 +52,11 @@ const routes: Routes = [
   {
     path: 'sign-up',
     component: UserSignUpComponent,
+    pathMatch: 'full'
+  },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
     pathMatch: 'full'
   },
   {
