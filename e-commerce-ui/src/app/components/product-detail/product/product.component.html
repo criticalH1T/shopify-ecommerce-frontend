@@ -1,0 +1,34 @@
+<div class="container">
+
+  <div class="product-picture">
+    <img src="{{product.imageUrl}}" alt="product image" height="400px">
+  </div>
+
+  <div class="product-details">
+
+    <h1 class="title">{{product.name}}</h1>
+
+    <span class="price">$ {{product.price}} CAD</span>
+
+    <p class="description">{{product.description}}</p>
+
+    <span class="volume">Size: {{product.volume}} ml</span>
+
+    <span>Quantity: </span>
+    <div class="quantity">
+      <button class="remove" (click)="decreaseInput()">-</button>
+      <input type="number"
+             id="inputField"
+             name="inputField"
+             [(ngModel)]="productQuantity"
+             pattern="[1-9][0-9]*"
+             (input)="onInputChange()"
+             required/>
+      <button class="add" (click)="increaseInput()">+</button>
+    </div>
+
+    <div class="add-to-cart">
+      <button (click)="addToCart()">Add to cart</button>
+    </div>
+  </div>
+</div>

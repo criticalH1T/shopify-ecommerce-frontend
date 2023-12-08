@@ -1,0 +1,96 @@
+.container {
+  background-color: white;
+  display: grid;
+  font-family: monospace;
+  align-items: center;
+  margin: 0 3rem;
+
+  .grid {
+    display: grid;
+    column-gap: 2.5rem;
+    row-gap: 3rem;
+    padding-top: 3rem;
+    box-sizing: border-box;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+
+    .product-card {
+      display: flex;
+      flex-direction: column;
+      justify-self: center;
+      //max-width: 100%;
+      justify-content: space-between;
+
+      img {
+        max-width: 100%;
+        max-height: 35vh;
+        align-self: center;
+      }
+    }
+
+    .product-title {
+      cursor: pointer;
+    }
+
+    h4:hover {
+      text-decoration: underline black;
+    }
+  }
+
+  .faq {
+    border: black 0.13rem solid;
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+
+    .faq-title {
+      align-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .faq-details {
+      .dropdown-toggle {
+        display: flex;
+        align-items: baseline;
+        gap: 1rem;
+        cursor: pointer;
+        border-top: solid 0.06rem gray;
+      }
+
+      .dropdown-toggle:hover {
+        background-color: #efefef;
+
+        p {
+          font-weight: bold;
+          text-decoration: underline black;
+        }
+      }
+
+      p {
+        font-weight: 100;
+        font-size: 0.8rem;
+      }
+    }
+
+    .last-item {
+      border-bottom: solid 0.06rem gray;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .faq {
+      padding: 2rem;
+    }
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media screen and (max-width: 375px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}

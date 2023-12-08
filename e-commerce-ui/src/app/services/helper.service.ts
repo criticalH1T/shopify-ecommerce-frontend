@@ -30,8 +30,9 @@ export enum Routes {
 }
 
 import {Injectable} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import { Router} from "@angular/router";
 import {AbstractControl} from "@angular/forms";
+import {Product} from "./api-endpoints.service";
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,8 @@ import {AbstractControl} from "@angular/forms";
 export class HelperService {
 
   recipeDetail: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-  constructor(private activatedRoute: ActivatedRoute) {
+  productsInCart: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>(null)
+  constructor(private router: Router) {
   }
 
   productListFilters(filterName: string, list: any): any {
@@ -62,7 +64,7 @@ export class HelperService {
     }
   }
 
-  transformToRouterString(string: string) {
+  transformToRouterString(string: string): string {
     return string.toLowerCase().replace(/ /g, '-');
   }
 
@@ -77,5 +79,10 @@ export class HelperService {
     }
 
     return null;
+  }
+
+  navigateToProductDetails(id: number, category: string) {
+    console.log(id, category)
+    this.router.navigate([`${this.transformToRouterString(category)}/${id}`])
   }
 }
