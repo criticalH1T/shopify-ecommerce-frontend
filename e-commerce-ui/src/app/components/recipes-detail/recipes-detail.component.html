@@ -24,34 +24,6 @@
     </button>
   </div>
 
-
-<!--  <div class="product-container" *ngIf="product != null">-->
-<!--    <div class="image-container">-->
-<!--      <img class="product-image" src="../../../assets/grapefruit-kombucha-can.png" alt="Kombucha can">-->
-<!--    </div>-->
-<!--    <div class="product-content">-->
-<!--      <h2 class="product-title">{{ product.name }}</h2>-->
-<!--      <div class="price">-->
-<!--        <span class="price-text">${{ product.price }}</span>-->
-<!--      </div>-->
-<!--      <p class="product-ingredients">{{ product.description }}</p>-->
-<!--      <p class="size-title">Size</p>-->
-<!--      <button class="size-button">340 mL</button>-->
-<!--      <p class="quantity-title">Quantity</p>-->
-<!--      <div class="quantity-selection">-->
-<!--        <button class="input-minus" (click)="decreaseQuantity()">-</button>-->
-<!--        <input type="text" class="input-amount" [(ngModel)]="productQuantity" (ngModelChange)="checkQuantity()" >-->
-<!--        <button class="input-plus" (click)="increaseQuantity()">+</button>-->
-<!--      </div>-->
-<!--      <div class="cart-buy">-->
-<!--        <button class="cart">Add to cart</button>-->
-<!--        <button class="buy">Buy it now</button>-->
-<!--      </div>-->
-<!--      <div class="view-full-details">-->
-<!--        <a href="/" class="full-details">View full details</a>-->
-<!--        <i class="bi bi-arrow-right"></i>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
+  <app-product *ngIf="product" [product]="product"></app-product>
 
 </div>
