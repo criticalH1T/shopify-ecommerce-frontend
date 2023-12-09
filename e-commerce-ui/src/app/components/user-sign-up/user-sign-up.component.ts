@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HelperService} from "../../services/helper.service";
 import {AuthenticationService} from "../../services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-sign-up',
@@ -13,7 +14,8 @@ export class UserSignUpComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private helperService: HelperService,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -38,9 +40,10 @@ export class UserSignUpComponent implements OnInit {
 
   onSubmit() {
     console.log(this.signupForm.value);
-    this.authenticationService.setRegistration(this.signupForm.value).subscribe({
-      next: value => {
-        alert(value) // this needs to be handled when we fix the backend
+    this.authenticationService.setRegistration(this.signupForm.value).subscribe(data => {
+      if (data.statusCode === 200) {
+        this.router.navigate(['/sign-in']);
+        alert(data.responseMessage)
       }
     });
   }

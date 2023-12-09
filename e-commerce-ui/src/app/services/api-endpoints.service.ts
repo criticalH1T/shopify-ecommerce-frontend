@@ -27,38 +27,31 @@ export interface Recipe {
   image_path: string
 }
 
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { Observable, of } from "rxjs";
-import { catchError, map } from 'rxjs/operators';
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable, of} from "rxjs";
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiEndpointsService {
   private apiUrl = "http://localhost:8080";
-  private bearerToken: string = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzZWN1cmVFbWFpbEBnbWFpbC5jb20iLCJpYXQiOjE3MDE4OTQyNDEsImV4cCI6MTcwMTk5NzkyMX0._FekrYeRUv7o9oA55tJrbRGe8HED7ExUKXsUhV0ajCc";
-  private headers = new HttpHeaders();
 
   constructor(private http: HttpClient,
               private helperService: HelperService) {
-    this.headers = this.headers.set('Authorization', 'Bearer ' + this.bearerToken);
   }
 
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.apiUrl}/products`, {withCredentials:true});
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, {withCredentials: true});
   }
 
   getCategories(): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {withCredentials:true});
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`, {withCredentials: true});
   }
 
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, {withCredentials:true});
-  }
-
-  getRecipeById(recipeId: string): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials:true});
+    return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, {withCredentials: true});
   }
 
   isRecipeValid(recipeId: string): Observable<boolean> {

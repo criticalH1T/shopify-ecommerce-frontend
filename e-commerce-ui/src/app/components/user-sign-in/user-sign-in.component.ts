@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {HelperService} from "../../services/helper.service";
 import {AuthenticationService} from "../../services/authentication.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-sign-in',
@@ -10,11 +10,10 @@ import {AuthenticationService} from "../../services/authentication.service";
 })
 export class UserSignInComponent implements OnInit {
   signupForm: FormGroup;
-  errorMessage: string = '';
-  jwtToken: string = '';
 
   constructor(private formBuilder: FormBuilder,
-              private authenticationService: AuthenticationService) {
+              private authenticationService: AuthenticationService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,9 +25,11 @@ export class UserSignInComponent implements OnInit {
 
   onSubmit() {
     this.authenticationService.setAuthentication(this.signupForm.value).subscribe(data => {
-      console.log(data);
+      if (data.statusCode === 200) {
+        this.router.navigate(['/home']);
+        window.sessionStorage.setItem('isLoggedIn', true.toString());
       }
-    );
+    });
   }
 
 }
