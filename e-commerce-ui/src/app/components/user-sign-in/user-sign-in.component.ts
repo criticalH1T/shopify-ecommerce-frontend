@@ -27,7 +27,8 @@ export class UserSignInComponent implements OnInit {
     this.authenticationService.setAuthentication(this.signupForm.value).subscribe(data => {
       if (data.statusCode === 200) {
         this.router.navigate(['/home']);
-        window.sessionStorage.setItem('isLoggedIn', true.toString());
+        alert(data.responseMessage);
+        window.sessionStorage.setItem('isUserLoggedIn', true.toString());
       }
     });
   }
