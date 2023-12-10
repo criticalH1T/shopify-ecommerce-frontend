@@ -39,7 +39,6 @@ export class UserSignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.signupForm.value);
     this.authenticationService.setRegistration(this.signupForm.value).subscribe(data => {
       if (data.statusCode === 200) {
         this.router.navigate(['/sign-in']);

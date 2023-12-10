@@ -81,7 +81,6 @@ export class HelperService {
   }
 
   navigateToProductDetails(id: number, category: string) {
-    console.log(id, category)
     this.router.navigate([`${this.transformToRouterString(category)}/${id}`])
   }
 }

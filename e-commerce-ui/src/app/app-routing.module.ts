@@ -17,6 +17,7 @@ import {productsResolver} from "./resolvers/products.resolver";
 import {recipeIdGuard} from "./guards/recipe-id.guard";
 import {recipesResolver} from "./resolvers/recipes.resolver";
 import {CheckoutComponent} from "./components/checkout/checkout.component";
+import {authGuard} from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -57,6 +58,7 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent,
+    canActivate: [authGuard],
     pathMatch: 'full'
   },
   {
