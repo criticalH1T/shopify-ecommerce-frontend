@@ -1,7 +1,8 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {HelperService, Products} from "../../services/helper.service";
+import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 
 
 @Component({
@@ -21,7 +22,7 @@ import {HelperService, Products} from "../../services/helper.service";
     ])
   ]
 })
-export class NavigationBarComponent {
+export class NavigationBarComponent implements OnInit {
   products: any[] = [
     {
       "name": "Drinks",
@@ -44,6 +45,8 @@ export class NavigationBarComponent {
   isBurgerMenuOpen: boolean = false;
   isSectionOpened: boolean = false;
   selectedProductSections: string[] = [];
+  isSearchBarOpened: boolean = false;
+  allProducts: Product[] = [];
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
@@ -55,9 +58,16 @@ export class NavigationBarComponent {
   }
 
   constructor(private router: Router,
-              private helperService: HelperService) {
+              private helperService: HelperService,
+              private apiEndPointService: ApiEndpointsService) {
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
+
+  ngOnInit(): void {
+        this.apiEndPointService.getProducts().subscribe(products => {
+          this.allProducts.push(...products);
+        });
+    }
 
   toggleDropdown(name: string) {
     const targetProduct = this.products.find(product => product.name === name);
@@ -123,5 +133,13 @@ export class NavigationBarComponent {
         }
       }
     })
+  }
+
+  openSearchBar() {
+    this.isSearchBarOpened = true;
+  }
+
+  closeSearchBar() {
+    this.isSearchBarOpened = false;
   }
 }

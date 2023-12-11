@@ -24,6 +24,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ProductComponent } from './components/product-detail/product/product.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { SearchBarComponent } from './components/navigation-bar/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
     UserSignUpComponent,
     ValidationMessagesComponent,
     ProductComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

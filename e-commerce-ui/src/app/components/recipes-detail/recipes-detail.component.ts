@@ -23,19 +23,4 @@ export class RecipesDetailComponent implements OnInit {
     })
   }
 
-  // productQuantity: any = 1;
-  //
-  // increaseQuantity() {
-  //   this.productQuantity++;
-  // }
-  //
-  // checkQuantity() {
-  //   if (this.productQuantity < 1 || isNaN(this.productQuantity)) this.productQuantity = 1;
-  // }
-  //
-  // decreaseQuantity() {
-  //   if (this.productQuantity >= 2 && !isNaN(this.productQuantity)) this.productQuantity--;
-  //   else if (isNaN(this.productQuantity)) this.productQuantity = 1;
-  // }
-
 }
