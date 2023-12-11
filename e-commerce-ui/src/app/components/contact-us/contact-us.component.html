@@ -1,1 +1,29 @@
-<p>contact-us works!</p>
+<div class="container">
+  <h2 class="title">Contact Us</h2>
+  <p class="description">Have a question or comment? Don't be shy: Reach out and say hi!
+    Support hours: Monday-Friday, 7am-3pm</p>
+  <form class="form" [formGroup]="contactUsForm" (ngSubmit)="onSubmit()">
+    <div class="contact-us-form">
+
+      <div class="form-item">
+        <input type="text" id="name" name="name" formControlName="name"
+               placeholder="Name">
+        <app-validation-messages [control]="contactUsForm.get('name')"></app-validation-messages>
+      </div>
+
+      <div class="form-item">
+        <input type="text" id="email" name="email" formControlName="email"
+               placeholder="Email">
+        <app-validation-messages [control]="contactUsForm.get('email')"></app-validation-messages>
+      </div>
+
+      <div class="form-item full-width">
+        <textarea type="text" id="comment" name="comment" formControlName="comment"
+                  placeholder="Comment"></textarea>
+        <app-validation-messages [control]="contactUsForm.get('comment')"></app-validation-messages>
+      </div>
+
+      <button class="submit-button" type="submit" [disabled]="contactUsForm.invalid">Send</button>
+    </div>
+  </form>
+</div>

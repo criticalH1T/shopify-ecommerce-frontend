@@ -1,0 +1,66 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: monospace;
+  padding: 0 1.8rem;
+  background-color: white;
+
+  .title {
+    font-size: 2rem;
+    margin: 1rem;
+  }
+
+  .description {
+    width: 100%;
+    max-width: 23rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .contact-us-form {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    max-width: 25rem;
+
+    .form-item {
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .submit-button {
+      width: 100%;
+      padding: 0.5rem;
+      box-sizing: border-box;
+      border: solid 0.06rem black;
+      background-color: black;
+      color: white;
+    }
+
+    .submit-button{
+      cursor: not-allowed;
+    }
+
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      border: solid 0.06rem black;
+      height: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    textarea {
+      max-width: 100%;
+      resize: vertical;
+      min-height: 5rem;
+      max-height: 8rem;
+    }
+  }
+
+}
