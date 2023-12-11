@@ -1,0 +1,104 @@
+.container {
+  font-family: monospace;
+  background-color: white;
+  width: 100%;
+  height: 200px;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+
+  .search-box {
+    border: solid black 3px;
+    width: 500px;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem;
+    .search-field {
+      font-family: monospace;
+      border: none;
+      width: 90%;
+      height: inherit;
+      margin: 0;
+      outline: none;
+      font-size: 1.25rem;
+      padding-left: 0.75rem;
+    }
+  }
+  .close-search {
+    position: relative;
+    cursor: pointer;
+    height: 2rem;
+    width: 10%;
+    border: none;
+    background-color: white;
+    color: dimgray;
+    .bi-x-lg {
+      font-size: 1.25rem;
+    }
+  }
+  .search-dropdown {
+    width: 500px;
+    background-color: white;
+    border: solid black 3px;
+    border-top: none;
+    padding: 0.75rem;
+    position: absolute;
+    .dropdown-title {
+      margin: 0;
+      border-bottom: solid #9a9a9a 1px;
+      padding: 0.5rem 0.75rem;
+      font-size: 1rem;
+      color: dimgray;
+      font-weight: lighter;
+    }
+    .search-list {
+      position: relative;
+      list-style-type: none;
+      padding: 0 0.75rem;
+
+      .item-link {
+        all: unset;
+        cursor: pointer;
+      }
+
+      .search-list-item {
+        height: 4rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        .item-image {
+          height: 100%;
+        }
+        .item-name:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    min-width: 320px;
+    .search-container {
+      width: 75%;
+      display: flex;
+      justify-content: center;
+      .search-box {
+        width: inherit;
+      }
+      .search-dropdown {
+        width: inherit;
+      }
+    }
+  }
+}

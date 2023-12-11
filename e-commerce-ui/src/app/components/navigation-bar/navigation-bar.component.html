@@ -1,5 +1,6 @@
 <ng-container *ngIf="isDesktopView; else mobileView">
   <div class="container">
+    <app-search-bar *ngIf="isSearchBarOpened" (closeSearchBar)="closeSearchBar()" [allProducts] = allProducts></app-search-bar>
     <div class="left-group">
       <div class="logo">
         <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100" routerLink="/home">
@@ -20,7 +21,7 @@
 
     </div>
     <div class="action-icons">
-      <button>
+      <button (click)="openSearchBar()">
         <i class="bi bi-search"></i>
       </button>
       <button>
@@ -36,6 +37,7 @@
 <ng-template #mobileView>
   <div id="overlay"></div>
   <div class="container">
+    <app-search-bar *ngIf="isSearchBarOpened" (closeSearchBar)="closeSearchBar()" [allProducts] = allProducts></app-search-bar>
     <div class="side-menu">
       <button *ngIf="!isBurgerMenuOpen" (click)="toggleBurgerMenu()">
         <i class="bi bi-list"></i>
@@ -65,7 +67,7 @@
       <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100" routerLink="/home">
     </div>
     <div class="action-icons">
-      <button>
+      <button (click)="openSearchBar()">
         <i class="bi bi-search"></i>
       </button>
       <button>
