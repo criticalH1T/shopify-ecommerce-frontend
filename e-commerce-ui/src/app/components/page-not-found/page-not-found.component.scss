@@ -11,6 +11,9 @@
 
   .page-not-found {
     object-fit: contain;
+    width: 100%;
+    max-width: 70vh;
+    height: auto;
   }
   .header {
     .title {
