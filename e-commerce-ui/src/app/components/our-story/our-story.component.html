@@ -1,6 +1,6 @@
 <div class="container">
   <div class="banner-container">
-    <img [src]="bannerContent.image" [alt]="bannerContent.alt" class="banner-image">
+    <img ngSrc="{{bannerContent.image}}" [alt]="bannerContent.alt" class="banner-image" width="2400" height="1107">
     <div class="banner-box">
       <h2 class="banner-text">
         {{ bannerContent.text }}
@@ -11,14 +11,14 @@
   <h2 class="grid-title">Keeping it green</h2>
   <div class="grid">
     <div class="grid-items" *ngFor="let item of gridItems">
-      <img class="item-image" [src]= "item.image" [alt]="item.alt" height="auto" width="25%">
+      <img class="item-image" ngSrc="{{item.image}}" [alt]="item.alt" height="85" width="60">
       <h3 class="item-title">{{ item.title }}</h3>
       <p class="item-text">{{ item.text }}</p>
     </div>
   </div>
 
   <div class="banner-container organic-container">
-    <img [src]="organicBannerContent.image" [alt]="organicBannerContent.alt" class="banner-image">
+    <img ngSrc="{{organicBannerContent.image}}" height="950" width="1400" [alt]="organicBannerContent.alt" class="banner-image">
     <div class="banner-box organic-box">
       <h2 class="banner-title organic-title">
         {{ organicBannerContent.title }}
@@ -31,7 +31,7 @@
 
   <div class="freshness-parent">
     <div class="freshness-container">
-      <img [src]="freshnessContent.image" alt="freshnessContent.alt" class="freshness-image">
+      <img ngSrc="{{freshnessContent.image}}" height="400" width="580" alt="freshnessContent.alt" class="freshness-image">
       <div class="freshness-content">
         <h2 class="freshness-title">{{ freshnessContent.title }}</h2>
         <p class="freshness-text">{{ freshnessContent.text }}</p>

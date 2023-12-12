@@ -12,7 +12,7 @@
       <ul class="search-list" *ngFor="let product of filteredProducts.value">
         <a routerLink="/{{ this.helperService.transformToRouterString(product.categoryCategoryName) }}/{{ product.id }}" class="item-link">
           <li class="search-list-item">
-            <img [src]="product.imageUrl" [alt]="product.name" class="item-image">
+            <img ngSrc="{{product.imageUrl}}" height="65" width="65" [alt]="product.name" class="item-image">
             <h3 class="item-name">{{ product.name }}</h3>
           </li>
         </a>

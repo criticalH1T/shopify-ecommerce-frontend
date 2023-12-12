@@ -6,10 +6,14 @@
   justify-content: center;
 
   .product-picture {
+    align-self: end;
     img {
       border: solid 0.13rem black;
-      height: 100%;
-      max-width: 20rem;
+      //height: 100%;
+      //max-width: 20rem;
+      width: auto;
+      height: auto;
+      max-height: 40vw;
     }
   }
 
@@ -75,12 +79,16 @@
   @media screen and (max-width: 800px) {
     flex-direction: column;
     align-items: center;
-  }
-
-  @media screen and (max-width: 375px) {
     .product-picture {
+      align-self: center;
       img {
-        max-width: 15rem;
+        max-height: 80vw;
+
+      }
+    }
+    .product-details{
+      h1 {
+        font-size: 2rem;
       }
     }
   }
