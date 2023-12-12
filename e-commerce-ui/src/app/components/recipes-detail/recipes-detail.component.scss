@@ -3,12 +3,17 @@
   margin: -8px;
   font-family: monospace;
 
+
   .recipe-container {
     width: 100%;
     margin-bottom: 6rem;
 
-    .recipe-image {
-      object-fit: cover;
+    .image-container {
+      display: flex;
+      justify-content: center;
+      .recipe-image {
+        object-fit: cover;
+      }
     }
 
     .description {

@@ -1,6 +1,8 @@
 <div class="container">
   <div class="recipe-container">
-    <img class="recipe-image" ngSrc="{{recipe.image_path}}" [alt]="recipe.name" height="600" width="1000">
+    <div class="image-container">
+      <img class="recipe-image" ngSrc="{{recipe.image_path}}" [alt]="recipe.name" height="600" width="1000">
+    </div>
     <div class="recipe-content">
       <h1 class="recipe-title"> {{ recipe.name }} </h1>
       <p class="description">{{ recipe.description }}</p>
