@@ -21,7 +21,7 @@
   .contact-us-form {
     display: grid;
     grid-template-rows: auto auto;
-    grid-template-columns: 1fr;
+    grid-template-columns: auto;
     gap: 1rem;
     max-width: 25rem;
 
@@ -53,6 +53,7 @@
       border: solid 0.06rem black;
       height: 2rem;
       margin-bottom: 0.5rem;
+      padding: 0.5rem;
     }
 
     textarea {

@@ -3,7 +3,7 @@
   <div class="grid-container">
     <div class="grid-item" *ngFor="let item of recipes">
       <div class="image-container">
-        <img class="item-image" [src] = "item.image_path" [alt] = "item.name" height="450px" width="100%">
+        <img class="item-image" ngSrc="{{item.image_path}}" [alt] = "item.name" height="450" width="700">
       </div>
       <div class="item-content">
         <h3 class="item-title" (click)="navigateToRecipeDetails(item)">{{ item.name }}</h3>

@@ -50,5 +50,6 @@ export class ProductComponent implements OnInit {
       this.shoppingCartService.addToCart(product);
     }
     alert('Item added to your cart!');
+    this.productQuantity = 1;
   }
 }
