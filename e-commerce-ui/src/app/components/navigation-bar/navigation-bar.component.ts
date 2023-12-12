@@ -1,9 +1,9 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {HelperService, Products} from "../../services/helper.service";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
-
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -22,7 +22,8 @@ import {ApiEndpointsService, Product} from "../../services/api-endpoints.service
     ])
   ]
 })
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent implements OnInit, OnDestroy {
+
   products: any[] = [
     {
       "name": "Drinks",
@@ -47,6 +48,7 @@ export class NavigationBarComponent implements OnInit {
   selectedProductSections: string[] = [];
   isSearchBarOpened: boolean = false;
   allProducts: Product[] = [];
+  subscriptions: Subscription[] = [];
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
@@ -64,10 +66,13 @@ export class NavigationBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-        this.apiEndPointService.getProducts().subscribe(products => {
+        this.subscriptions.push(this.apiEndPointService.getProducts().subscribe(products => {
           this.allProducts.push(...products);
-        });
+        }));
     }
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 
   toggleDropdown(name: string) {
     const targetProduct = this.products.find(product => product.name === name);
