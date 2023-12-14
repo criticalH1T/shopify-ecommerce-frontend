@@ -1,1 +1,27 @@
-<p>product-landing-page works!</p>
+<div class="container">
+  <div class="banner-container">
+    <div class="image-container">
+      <img ngSrc="../../../assets/landing-page.png" alt="Take a sip" class="banner-image" height="1050" width="1070">
+    </div>
+    <div class="content-container">
+      <h2 class="banner-title">Take a sip</h2>
+      <p class="banner-text">Sweet, tart, and oh-so-refreshing, our low-sugar, probiotic lemonades taste like summer in a bottle.</p>
+      <a routerLink="/lemonades" class="shop-link">
+        <button class="shop-button">Shop Lemonades</button>
+      </a>
+    </div>
+  </div>
+  <app-grid-products [gridTitle]="suggestedProductsTitle" [gridProducts]="suggestedProducts"></app-grid-products>
+  <div class="banner-container">
+    <div class="content-container">
+      <h2 class="banner-title banner-title-second">“This spicy, pocket-sized booster is the healthy kickstart I need to start my day.”</h2>
+      <p class="quote-by">
+        - JANE S.
+      </p>
+    </div>
+    <div class="image-container image-container-second">
+      <img ngSrc="../../../assets/landing-page-2.png" alt="Take a sip" class="banner-image" height="1050" width="1070">
+    </div>
+  </div>
+  <app-product [product]="productDetail"></app-product>
+</div>

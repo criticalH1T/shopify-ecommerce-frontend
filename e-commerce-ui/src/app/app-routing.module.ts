@@ -28,6 +28,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: ProductLandingPageComponent,
+    resolve: {resolver: productsResolver},
     pathMatch: 'full'
   },
   {

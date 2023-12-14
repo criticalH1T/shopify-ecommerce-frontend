@@ -13,6 +13,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   suggestedProducts: Product[];
   subscriptions: Subscription[] = [];
+  suggestionsGridTitle: string = 'Try these flavors next';
 
   faq: any[] = [
     {
