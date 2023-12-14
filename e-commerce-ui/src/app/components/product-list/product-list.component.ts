@@ -1,6 +1,6 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
-import {filter, first} from "rxjs";
+import {filter, first, Subscription} from "rxjs";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 import {HelperService, ProductFilters, Products, Routes} from "../../services/helper.service";
 
@@ -9,7 +9,8 @@ import {HelperService, ProductFilters, Products, Routes} from "../../services/he
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   activeCategory: string = '';
   productList: any[] = [];
   noFilterProductList: any[] = [];
@@ -83,9 +84,13 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleRouteChange();
-    this.router.events.pipe(
+    this.subscriptions.push(this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
-    ).subscribe(() => this.handleRouteChange());
+    ).subscribe(() => this.handleRouteChange()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   private handleRouteChange(): void {
@@ -94,14 +99,14 @@ export class ProductListComponent implements OnInit {
   }
 
   private getProductsForCategory(): void {
-    this.activatedRoute.data.pipe(first()).subscribe(products => {
+    this.subscriptions.push(this.activatedRoute.data.pipe(first()).subscribe(products => {
       this.productList = [];
       if (this.activeCategory === 'shop-all') {
         this.productList.push(...products['resolver']);
       } else {
         this.filterProductsByCategory(products['resolver']);
       }
-    });
+    }));
   }
 
   private filterProductsByCategory(products: Product[]): void {

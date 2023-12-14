@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {Product} from "../../services/api-endpoints.service";
 import {HelperService} from "../../services/helper.service";
-import {filter} from "rxjs";
+import {filter, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.scss']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
   product: Product;
   suggestedProducts: Product[];
+  subscriptions: Subscription[] = [];
 
   faq: any[] = [
     {
@@ -40,9 +41,13 @@ export class ProductDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.handleRouteChange();
-    this.router.events.pipe(
+    this.subscriptions.push(this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
-    ).subscribe(() => this.handleRouteChange());
+    ).subscribe(() => this.handleRouteChange()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   private handleRouteChange(): void {
@@ -52,12 +57,12 @@ export class ProductDetailComponent implements OnInit {
   listSuggestedProducts() {
     const productId: string = this.activatedRoute.snapshot.paramMap.get('productId');
     const category: string = this.activatedRoute.snapshot.paramMap.get('category');
-    this.activatedRoute.data.subscribe(products => {
+    this.subscriptions.push(this.activatedRoute.data.subscribe(products => {
       this.product = products['resolver'].find(product => product.id == productId);
       this.suggestedProducts = products['resolver']
         .filter(product => this.helperService.transformToRouterString(product.categoryCategoryName) === category && product.id.toString() !== productId)
         .slice(0,4);
-    });
+    }));
   }
   toggleDropdown(question: string) {
     const targetFaq = this.faq.find(item => item.question === question);

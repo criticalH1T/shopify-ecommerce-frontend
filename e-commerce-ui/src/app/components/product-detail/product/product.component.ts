@@ -1,8 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Product} from "../../../services/api-endpoints.service";
 import {HelperService} from "../../../services/helper.service";
 import {ShoppingCartService} from "../../../services/shopping-cart.service";
-import {filter} from "rxjs";
+import {filter, Subscription} from "rxjs";
 import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
@@ -10,9 +10,10 @@ import {NavigationEnd, Router} from "@angular/router";
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnDestroy {
   @Input() product: Product;
   productQuantity: number = 1;
+  subscriptions: Subscription[] = [];
 
   constructor(private shoppingCartService: ShoppingCartService,
               private router: Router) {
@@ -20,9 +21,13 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.handleRouteChange();
-    this.router.events.pipe(
+    this.subscriptions.push(this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
-    ).subscribe(() => this.handleRouteChange());
+    ).subscribe(() => this.handleRouteChange()));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   handleRouteChange() {

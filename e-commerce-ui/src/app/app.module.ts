@@ -25,6 +25,7 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
 import { ProductComponent } from './components/product-detail/product/product.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { SearchBarComponent } from './components/navigation-bar/search-bar/search-bar.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { SearchBarComponent } from './components/navigation-bar/search-bar/searc
     ValidationMessagesComponent,
     ProductComponent,
     CheckOutComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

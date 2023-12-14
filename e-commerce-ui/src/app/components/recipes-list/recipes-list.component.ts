@@ -1,14 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ApiEndpointsService, Recipe} from "../../services/api-endpoints.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {HelperService} from "../../services/helper.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-recipes-list',
   templateUrl: './recipes-list.component.html',
   styleUrls: ['./recipes-list.component.scss']
 })
-export class RecipesListComponent implements OnInit {
+export class RecipesListComponent implements OnInit, OnDestroy {
 
   constructor(private apiEndpointService: ApiEndpointsService,
               private router: Router,
@@ -17,6 +18,7 @@ export class RecipesListComponent implements OnInit {
   }
 
   recipes: Recipe[] = [];
+  subscriptions: Subscription[] = [];
 
   navigateToRecipeDetails(item: any) {
     const recipe = this.recipes.find((recipe) => recipe.id === item.id);
@@ -26,10 +28,14 @@ export class RecipesListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(
+    this.subscriptions.push(this.activatedRoute.data.subscribe(
       (recipes) => {
         this.recipes = recipes['resolver'];
       }
-    );
+    ));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

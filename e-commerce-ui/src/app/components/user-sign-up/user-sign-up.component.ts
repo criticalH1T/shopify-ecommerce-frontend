@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HelperService} from "../../services/helper.service";
 import {AuthenticationService} from "../../services/authentication.service";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-user-sign-up',
   templateUrl: './user-sign-up.component.html',
   styleUrls: ['./user-sign-up.component.scss']
 })
-export class UserSignUpComponent implements OnInit {
+export class UserSignUpComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
+  subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder,
               private helperService: HelperService,
@@ -29,6 +31,10 @@ export class UserSignUpComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
   private matchPasswords(control: AbstractControl): { [key: string]: boolean } | null {
     const password = this.signupForm?.get('password')?.value;
     const reEnterPassword = control.value;
@@ -39,11 +45,11 @@ export class UserSignUpComponent implements OnInit {
   }
 
   onSubmit() {
-    this.authenticationService.setRegistration(this.signupForm.value).subscribe(data => {
+    this.subscriptions.push(this.authenticationService.setRegistration(this.signupForm.value).subscribe(data => {
       if (data.statusCode === 200) {
         this.router.navigate(['/sign-in']);
         alert(data.responseMessage)
       }
-    });
+    }));
   }
 }
