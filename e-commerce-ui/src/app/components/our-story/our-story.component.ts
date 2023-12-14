@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class OurStoryComponent {
 
   bannerContent =  {
-    "image": "../../../assets/banner-image.png",
+    "image": "../../../assets/our-story-first.png",
     "alt": "banner image",
     "text": "Our mission is to offer widespread, sustainable access to delicious plant-based nutrition."
   };

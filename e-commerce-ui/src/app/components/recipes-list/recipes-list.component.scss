@@ -1,12 +1,6 @@
 .container {
-  padding: 0 30px;
-  margin: -8px;
   font-family: monospace;
-  .title {
-    padding: 0 10vw;
-  }
   .grid-container {
-    padding: 0 10vw;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 2rem;

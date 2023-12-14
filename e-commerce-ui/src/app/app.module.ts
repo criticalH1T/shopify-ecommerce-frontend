@@ -23,9 +23,9 @@ import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.comp
 import {HttpClientModule} from "@angular/common/http";
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ProductComponent } from './components/product-detail/product/product.component';
-import { CheckOutComponent } from './components/check-out/check-out.component';
 import { SearchBarComponent } from './components/navigation-bar/search-bar/search-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GridProductsComponent } from './components/grid-products/grid-products.component';
 
 @NgModule({
   declarations: [
@@ -46,9 +46,9 @@ import { FooterComponent } from './components/footer/footer.component';
     UserSignUpComponent,
     ValidationMessagesComponent,
     ProductComponent,
-    CheckOutComponent,
     SearchBarComponent,
-    FooterComponent
+    FooterComponent,
+    GridProductsComponent
   ],
   imports: [
     BrowserModule,

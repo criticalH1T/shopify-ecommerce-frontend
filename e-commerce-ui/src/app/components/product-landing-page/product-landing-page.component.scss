@@ -1,0 +1,101 @@
+.container {
+  font-family: monospace;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  margin-top: 3rem;
+  .banner-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: solid black 2px;
+    height: 600px;
+    .image-container {
+      flex: 1;
+      height: 100%;
+      border-right: solid black 2px;
+      box-sizing: border-box;
+      .banner-image {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+    }
+    .image-container-second {
+      border-right: none;
+      border-left: solid black 2px;
+    }
+    .content-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      height: 100%;
+      box-sizing: border-box;
+      h2 {
+        font-size: 3rem;
+        margin: 0;
+      }
+      p {
+        font-size: 1.5rem;
+        color: dimgray;
+        padding: 0 4rem;
+      }
+      a:hover {
+        cursor: pointer;
+      }
+      button {
+        height: 50px;
+        width: 150px;
+        background-color: black;
+        color: white;
+        font-family: monospace;
+      }
+      .banner-title-second {
+        padding: 0 2rem;
+        font-size: 2.5rem;
+      }
+      .quote-by {
+        padding: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    .banner-container {
+      flex-direction: column;
+      height: 1000px;
+      width: 100%;
+      .image-container {
+        border-right: none;
+        border-bottom: solid black 2px;
+      }
+      .image-container-second {
+        border-left: none;
+        border-bottom: none;
+        border-top: solid black 2px;
+      }
+      .content-container {
+        flex: 0;
+        padding: 1.5rem;
+        h2 {
+          font-size: 2.5rem;
+        }
+        p {
+          font-size: 1.25rem;
+          padding: 0 1.5rem;
+        }
+        .banner-title-second {
+          font-size: 2rem;
+          padding: 0 1.5rem;
+        }
+      }
+    }
+  }
+}

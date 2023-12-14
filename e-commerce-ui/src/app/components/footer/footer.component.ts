@@ -7,6 +7,13 @@ import {Component} from '@angular/core';
 })
 export class FooterComponent {
 
+  socialMediaIcons = [
+    "bi bi-facebook",
+    "bi bi-instagram",
+    "bi bi-twitter-x",
+    "bi bi-pinterest"
+  ]
+
   quickLinks = [
     {
       "name": "Drinks",

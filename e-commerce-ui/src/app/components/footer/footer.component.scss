@@ -1,11 +1,10 @@
 .container {
   padding: 2rem 0;
-  margin: -8px;
   height: 100%;
-  width: 100vw;
-  margin-top: 6rem;
+  margin: 6rem -8px -8px -8px;
   font-family: monospace;
   background-color: black;
+
   h2 {
     color: white;
     font-size: 1.5rem;
@@ -68,7 +67,6 @@
 @media screen and (max-width: 768px) {
   .container {
     height: 100%;
-    width: 100vw;
     .content {
       flex-direction: column;
     }

@@ -3,41 +3,6 @@
   display: grid;
   font-family: monospace;
   align-items: center;
-  margin: 0 3rem;
-
-  .grid {
-    display: grid;
-    column-gap: 2.5rem;
-    row-gap: 3rem;
-    padding-top: 3rem;
-    box-sizing: border-box;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    justify-content: center;
-
-    .product-card {
-      display: flex;
-      flex-direction: column;
-      justify-self: center;
-      //max-width: 100%;
-      justify-content: space-between;
-
-      img {
-        max-height: 80vw;
-        max-width: 25vh;
-        align-self: center;
-        width: auto;
-        height: auto;
-      }
-    }
-
-    .product-title {
-      cursor: pointer;
-    }
-
-    h4:hover {
-      text-decoration: underline black;
-    }
-  }
 
   .faq {
     border: black 0.13rem solid;
@@ -84,15 +49,6 @@
   @media screen and (max-width: 800px) {
     .faq {
       padding: 2rem;
-    }
-    .grid {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-
-  @media screen and (max-width: 375px) {
-    .grid {
-      grid-template-columns: 1fr;
     }
   }
 }
