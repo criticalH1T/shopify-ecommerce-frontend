@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {NgOptimizedImage, CommonModule } from "@angular/common";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { NgOptimizedImage, CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
 import { LoginComponent } from './components/login/login.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
 import { RecipesDetailComponent } from './components/recipes-detail/recipes-detail.component';
@@ -20,12 +19,16 @@ import { ContactUsComponent } from './components/contact-us/contact-us.component
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { UserSignInComponent } from './components/user-sign-in/user-sign-in.component';
 import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
-import {HttpClientModule} from "@angular/common/http";
+import { HttpClientModule } from '@angular/common/http';
 import { ValidationMessagesComponent } from './components/validation-messages/validation-messages.component';
 import { ProductComponent } from './components/product-detail/product/product.component';
 import { SearchBarComponent } from './components/navigation-bar/search-bar/search-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { GridProductsComponent } from './components/grid-products/grid-products.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { RouterModule } from '@angular/router';
+import { OrderCompletedComponent } from './components/order-completed/order-completed.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +51,8 @@ import { GridProductsComponent } from './components/grid-products/grid-products.
     ProductComponent,
     SearchBarComponent,
     FooterComponent,
-    GridProductsComponent
+    GridProductsComponent,
+    OrderCompletedComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,9 +62,11 @@ import { GridProductsComponent } from './components/grid-products/grid-products.
     CommonModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPayPalModule,
+    RouterModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

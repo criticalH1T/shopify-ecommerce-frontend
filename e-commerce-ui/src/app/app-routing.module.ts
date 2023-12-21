@@ -1,113 +1,119 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ProductLandingPageComponent} from "./components/product-landing-page/product-landing-page.component";
-import {ProductListComponent} from "./components/product-list/product-list.component";
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
-import {ProductDetailComponent} from "./components/product-detail/product-detail.component";
-import {RecipesListComponent} from "./components/recipes-list/recipes-list.component";
-import {RecipesDetailComponent} from "./components/recipes-detail/recipes-detail.component";
-import {OurStoryComponent} from "./components/our-story/our-story.component";
-import {ContactUsComponent} from "./components/contact-us/contact-us.component";
-import {ShoppingCartComponent} from "./components/shopping-cart/shopping-cart.component";
-import {UserSignInComponent} from "./components/user-sign-in/user-sign-in.component";
-import {UserSignUpComponent} from "./components/user-sign-up/user-sign-up.component";
-import {categoryGuard} from "./guards/category.guard";
-import {productIdGuard} from "./guards/product-id.guard";
-import {productsResolver} from "./resolvers/products.resolver";
-import {recipeIdGuard} from "./guards/recipe-id.guard";
-import {recipesResolver} from "./resolvers/recipes.resolver";
-import {CheckoutComponent} from "./components/checkout/checkout.component";
-import {authGuard} from "./guards/auth.guard";
+import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
+import { RecipesListComponent } from './components/recipes-list/recipes-list.component';
+import { RecipesDetailComponent } from './components/recipes-detail/recipes-detail.component';
+import { OurStoryComponent } from './components/our-story/our-story.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { UserSignInComponent } from './components/user-sign-in/user-sign-in.component';
+import { UserSignUpComponent } from './components/user-sign-up/user-sign-up.component';
+import { categoryGuard } from './guards/category.guard';
+import { productIdGuard } from './guards/product-id.guard';
+import { productsResolver } from './resolvers/products.resolver';
+import { recipeIdGuard } from './guards/recipe-id.guard';
+import { recipesResolver } from './resolvers/recipes.resolver';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { authGuard } from './guards/auth.guard';
+import { OrderCompletedComponent } from './components/order-completed/order-completed.component';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
     component: ProductLandingPageComponent,
-    resolve: {resolver: productsResolver},
-    pathMatch: 'full'
+    resolve: { resolver: productsResolver },
+    pathMatch: 'full',
   },
   {
     path: 'our-story',
     component: OurStoryComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'contact-us',
     component: ContactUsComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'cart',
     component: ShoppingCartComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'sign-in',
     component: UserSignInComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'sign-up',
     component: UserSignUpComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+  },
+  {
+    path: 'order-completed',
+    component: OrderCompletedComponent,
+    pathMatch: 'full',
   },
   {
     path: 'checkout',
     component: CheckoutComponent,
     canActivate: [authGuard],
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'page-not-found',
     pathMatch: 'full',
-    component: PageNotFoundComponent
+    component: PageNotFoundComponent,
   },
   {
     path: 'recipes',
-    resolve: {resolver: recipesResolver},
+    resolve: { resolver: recipesResolver },
     canActivateChild: [recipeIdGuard],
     children: [
       {
         path: '',
-        component: RecipesListComponent
+        component: RecipesListComponent,
       },
       {
         path: ':recipeId',
         pathMatch: 'full',
-        component: RecipesDetailComponent
-      }
-    ]
+        component: RecipesDetailComponent,
+      },
+    ],
   },
   {
     path: ':category',
     canActivate: [categoryGuard],
     canActivateChild: [productIdGuard],
-    resolve: {resolver: productsResolver},
+    resolve: { resolver: productsResolver },
     children: [
       {
         path: '',
-        component: ProductListComponent
+        component: ProductListComponent,
       },
       {
         path: ':productId',
         pathMatch: 'full',
-        component: ProductDetailComponent
-      }
+        component: ProductDetailComponent,
+      },
     ],
   },
   {
     path: '**',
-    redirectTo: '/page-not-found'
-  }
+    redirectTo: '/page-not-found',
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'top' })],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
