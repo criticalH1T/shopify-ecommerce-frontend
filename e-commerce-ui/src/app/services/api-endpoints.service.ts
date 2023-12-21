@@ -27,10 +27,39 @@ export interface Recipe {
   image_path: string;
 }
 
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+export interface adminResponse {
+  responseMessage: string,
+  status: number
+}
+
+export interface User {
+  user_id: number,
+  firstName: string,
+  lastName: string,
+  address: string,
+  role: string,
+}
+export interface OrderItem {
+  id: number,
+  order: Order,
+  quantity: number,
+  subtotal: number,
+  product: Product
+}
+
+export interface Order {
+  id: number,
+  orderDate: Date,
+  orderTotal: number,
+  orderItems: OrderItem[],
+  user: User
+}
+
+
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable, of} from "rxjs";
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +85,10 @@ export class ApiEndpointsService {
     return this.http.get<Recipe[]>(`${this.apiUrl}/recipes`, {
       withCredentials: true,
     });
+  }
+
+  getOrdersWithitems(): Observable<Order[]> {
+    return this.http.get<Order[]>(`${this.apiUrl}/orders`, {withCredentials: true});
   }
 
   isRecipeValid(recipeId: string): Observable<boolean> {
@@ -101,6 +134,12 @@ export class ApiEndpointsService {
             ) === categoryName
         )
       ),
+      catchError(() => of(false))
+    );
+  }
+  isAdmin(): Observable<boolean> {
+    return this.http.get<adminResponse>(`${this.apiUrl}/admin`, {withCredentials: true}).pipe(
+      map(response => response.status == 200),
       catchError(() => of(false))
     );
   }

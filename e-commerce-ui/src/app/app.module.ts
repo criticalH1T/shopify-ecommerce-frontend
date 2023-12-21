@@ -29,6 +29,8 @@ import { NgxPayPalModule } from 'ngx-paypal';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';
 import { OrderCompletedComponent } from './components/order-completed/order-completed.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +55,9 @@ import { OrderCompletedComponent } from './components/order-completed/order-comp
     FooterComponent,
     GridProductsComponent,
     OrderCompletedComponent,
+    GridProductsComponent,
+    AdminComponent,
+    AdminOrdersComponent
   ],
   imports: [
     BrowserModule,
