@@ -19,6 +19,9 @@ import { recipesResolver } from './resolvers/recipes.resolver';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { authGuard } from './guards/auth.guard';
 import { OrderCompletedComponent } from './components/order-completed/order-completed.component';
+import {adminGuard} from "./guards/admin.guard";
+import {AdminComponent} from "./components/admin/admin.component";
+import {AdminOrdersComponent} from "./components/admin-orders/admin-orders.component";
 
 const routes: Routes = [
   {
@@ -88,6 +91,20 @@ const routes: Routes = [
         component: RecipesDetailComponent,
       },
     ],
+  },
+  {
+    path: 'admin',
+    canActivate: [adminGuard],
+    children: [
+      {
+        path: '',
+        component: AdminComponent
+      },
+      {
+        path: 'orders',
+        component: AdminOrdersComponent
+      }
+    ]
   },
   {
     path: ':category',

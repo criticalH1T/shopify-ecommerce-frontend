@@ -1,0 +1,9 @@
+<div class="container">
+  <h2 class="welcome">Welcome to admin dashboard</h2>
+  <div class="grid">
+    <div class="grid-item" *ngFor="let card of gridCards" (click)="goToComponent(card)">
+      <i class="{{ card.iconName }}"></i>
+      <h2 class="title">{{ card.title }}</h2>
+    </div>
+  </div>
+</div>
