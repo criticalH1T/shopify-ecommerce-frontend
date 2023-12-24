@@ -22,6 +22,7 @@ import { OrderCompletedComponent } from './components/order-completed/order-comp
 import {adminGuard} from "./guards/admin.guard";
 import {AdminComponent} from "./components/admin/admin.component";
 import {AdminOrdersComponent} from "./components/admin-orders/admin-orders.component";
+import {AdminUserRolesComponent} from "./components/admin-user-roles/admin-user-roles.component";
 
 const routes: Routes = [
   {
@@ -103,6 +104,10 @@ const routes: Routes = [
       {
         path: 'orders',
         component: AdminOrdersComponent
+      },
+      {
+        path: 'roles',
+        component: AdminUserRolesComponent
       }
     ]
   },

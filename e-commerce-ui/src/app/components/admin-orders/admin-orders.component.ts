@@ -14,7 +14,7 @@ export class AdminOrdersComponent implements OnInit {
   orderItems: OrderItem[];
   selectedOrderId: number;
   ngOnInit(): void {
-    this.apiEndpointsService.getOrdersWithitems().subscribe(
+    this.apiEndpointsService.getOrdersWithItems().subscribe(
         orders => {
             this.orders = orders;
             // assign first order's orderItems to display
