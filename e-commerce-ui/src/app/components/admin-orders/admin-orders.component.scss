@@ -1,4 +1,29 @@
+.back {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0;
+  .bi-arrow-left {
+    font-size: 1rem;
+  }
+  .back-button {
+    all: unset;
+    font-family: monospace;
+    font-size: 1rem;
+  }
+}
+.back:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .container {
+  display: flex;
+  flex-direction: column;
+}
+
+.tables-container {
   font-family: monospace;
   display: flex;
   align-items: center;
@@ -13,7 +38,8 @@
       width: 100%;
       box-sizing: border-box;
       td {
-        width: calc(100%/4);;
+        width: calc(100%/5);
+        text-align: center;
       }
       .order-table {
         .selected {
@@ -32,10 +58,12 @@
       box-sizing: border-box;
       td {
         width: calc(100%/3);
+        text-align: center;
       }
       .product-data {
         all: unset;
         display: flex;
+        text-align: left;
         justify-content: flex-start;
         align-items: center;
         gap: 1rem;
@@ -47,7 +75,7 @@
 
 
 div {
-  margin: 20px;
+  margin: 20px 20px 0;
 }
 
 h2, h3 {
@@ -63,7 +91,7 @@ table {
 th, td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 th {
@@ -82,7 +110,7 @@ img {
   div {
     margin: 10px;
   }
-  .container {
+  .tables-container {
     display: flex;
     align-items: center;
     .content-container {
@@ -93,14 +121,14 @@ img {
 }
 
 @media screen and (max-width: 375px) {
-  .container {
+  .tables-container {
     .content-container {
       .first-container, .second-container {
         padding: 0;
       }
     }
   }
-  .container {
+  .tables-container {
     .content-container {
       .second-container {
         .product-data {

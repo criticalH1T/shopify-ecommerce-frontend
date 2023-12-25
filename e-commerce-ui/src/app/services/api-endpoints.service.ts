@@ -33,7 +33,7 @@ export interface adminResponse {
 }
 
 export interface User {
-  user_id: number,
+  userId: number,
   firstName: string,
   lastName: string,
   address: string,
@@ -87,8 +87,20 @@ export class ApiEndpointsService {
     });
   }
 
-  getOrdersWithitems(): Observable<Order[]> {
+  getOrdersWithItems(): Observable<Order[]> {
     return this.http.get<Order[]>(`${this.apiUrl}/orders`, {withCredentials: true});
+  }
+
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/users`, {withCredentials: true});
+  }
+
+  deleteUser(user_id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/users/${user_id}`, {withCredentials: true})
+  }
+
+  switchUserRole(user_id: number): Observable<any> {
+    return this.http.patch(`${this.apiUrl}/users/${user_id}`,null, {withCredentials: true});
   }
 
   isRecipeValid(recipeId: string): Observable<boolean> {

@@ -1,42 +1,50 @@
 <div class="container">
-  <div *ngIf="orders" class="content-container">
-    <div class="first-container">
-      <h2>Order Details</h2>
-      <table class="order-table">
-        <tr>
-          <th>Order Number</th>
-          <th>User</th>
-          <th>Order Date</th>
-          <th>Order Total</th>
-        </tr>
-        <tr *ngFor="let order of orders"  [class.selected]="order.id == selectedOrderId" (click)="showOrderItems(order)">
-          <td>{{ order.id }} </td>
-          <td>{{ order.user.firstName + " " + order.user.lastName}}</td>
-          <td>{{ order.orderDate }}</td>
-          <td>{{ order.orderTotal | currency }}</td>
-        </tr>
-      </table>
-    </div>
+  <div class="back" routerLink="/admin">
+    <i class="bi bi-arrow-left"></i>
+    <button class="back-button">
+      Back
+    </button>
+  </div>
+  <div class="tables-container">
+    <div *ngIf="orders" class="content-container">
+      <div class="first-container">
+        <h2>Order Details</h2>
+        <table class="order-table">
+          <tr>
+            <th>Order Number</th>
+            <th>User</th>
+            <th>Order Date</th>
+            <th>Order Total</th>
+          </tr>
+          <tr *ngFor="let order of orders"  [class.selected]="order.id == selectedOrderId" (click)="showOrderItems(order)">
+            <td>{{ order.id }} </td>
+            <td>{{ order.user.firstName + " " + order.user.lastName}}</td>
+            <td>{{ order.orderDate }}</td>
+            <td>{{ order.orderTotal | currency }}</td>
+          </tr>
+        </table>
+      </div>
 
-    <div class="second-container">
-      <h2>Order Items</h2>
-      <table>
-        <tr>
-          <th>Product</th>
-          <th>Quantity</th>
-          <th>Total</th>
-        </tr>
-        <tr *ngFor="let item of orderItems">
-          <td>
-            <a class="product-data" routerLink="/{{ this.helperService.transformToRouterString(item.product.categoryCategoryName) }}/{{ item.product.id }}" target="_blank">
-              <img ngSrc="{{ item.product.imageUrl }}" alt="{{ item.product.name }}" class="product-image" height="65" width="35">
-              <p class="product-name">{{ item.product.name }}</p>
-            </a>
-          </td>
-          <td>{{ item.quantity }}</td>
-          <td>{{ item.subtotal | currency}}</td>
-        </tr>
-      </table>
+      <div class="second-container">
+        <h2>Order Items</h2>
+        <table>
+          <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Total</th>
+          </tr>
+          <tr *ngFor="let item of orderItems">
+            <td>
+              <a class="product-data" routerLink="/{{ this.helperService.transformToRouterString(item.product.categoryCategoryName) }}/{{ item.product.id }}" target="_blank">
+                <img ngSrc="{{ item.product.imageUrl }}" alt="{{ item.product.name }}" class="product-image" height="65" width="35">
+                <p class="product-name">{{ item.product.name }}</p>
+              </a>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.subtotal | currency}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

@@ -31,6 +31,8 @@ import { RouterModule } from '@angular/router';
 import { OrderCompletedComponent } from './components/order-completed/order-completed.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
+import { AdminUserRolesComponent } from './components/admin-user-roles/admin-user-roles.component';
+import { AdminItemsComponent } from './components/admin-items/admin-items.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,9 @@ import { AdminOrdersComponent } from './components/admin-orders/admin-orders.com
     OrderCompletedComponent,
     GridProductsComponent,
     AdminComponent,
-    AdminOrdersComponent
+    AdminOrdersComponent,
+    AdminUserRolesComponent,
+    AdminItemsComponent
   ],
   imports: [
     BrowserModule,
