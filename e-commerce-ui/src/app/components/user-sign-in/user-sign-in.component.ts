@@ -33,7 +33,6 @@ export class UserSignInComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.authenticationService.setAuthentication(this.signupForm.value).subscribe(data => {
       if (data.statusCode === 200) {
         this.router.navigate(['/home']);
-        alert(data.responseMessage);
         window.sessionStorage.setItem('isUserLoggedIn', true.toString());
       }
     }));

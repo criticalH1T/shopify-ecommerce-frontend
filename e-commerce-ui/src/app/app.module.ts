@@ -32,6 +32,7 @@ import { OrderCompletedComponent } from './components/order-completed/order-comp
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminUserRolesComponent } from './components/admin-user-roles/admin-user-roles.component';
+import { AdminItemsComponent } from './components/admin-items/admin-items.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AdminUserRolesComponent } from './components/admin-user-roles/admin-use
     GridProductsComponent,
     AdminComponent,
     AdminOrdersComponent,
-    AdminUserRolesComponent
+    AdminUserRolesComponent,
+    AdminItemsComponent
   ],
   imports: [
     BrowserModule,
