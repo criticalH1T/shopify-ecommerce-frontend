@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap');
 .pages {
   padding: 0 6rem;
+  min-height: 50vh;
   @media screen and (max-width: 768px) {
     padding: 0 3rem;
   }

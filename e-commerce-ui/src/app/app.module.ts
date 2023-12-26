@@ -33,6 +33,8 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminOrdersComponent } from './components/admin-orders/admin-orders.component';
 import { AdminUserRolesComponent } from './components/admin-user-roles/admin-user-roles.component';
 import { AdminItemsComponent } from './components/admin-items/admin-items.component';
+import { ModalComponent } from './components/modal/modal.component';
+import { CamelCaseToSpacePipe } from './pipes/camel-case-to-space.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { AdminItemsComponent } from './components/admin-items/admin-items.compon
     AdminComponent,
     AdminOrdersComponent,
     AdminUserRolesComponent,
-    AdminItemsComponent
+    AdminItemsComponent,
+    ModalComponent,
+    CamelCaseToSpacePipe
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,26 @@
+<div class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2>{{ modalTitle }}</h2>
+      <i class="bi bi-x-lg" (click)="onClose()"></i>
+    </div>
+    <div class="modal-content">
+      <form [formGroup]="form">
+        <p>Please use the following symbol to split your steps ','</p>
+        <div *ngFor="let controlName of form.controls | keyvalue">
+          <label>{{ controlName.key | camelCaseToSpace }}</label>
+          <input [formControlName]="controlName.key" />
+          <app-validation-messages
+            [control]="form.get(controlName.key)"
+          ></app-validation-messages>
+        </div>
+        <div class="modal-actions">
+          <button (click)="onSave()" type="submit" [disabled]="form.invalid">
+            Save
+          </button>
+          <button (click)="onClose()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

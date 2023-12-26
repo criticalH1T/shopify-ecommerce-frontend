@@ -1,10 +1,10 @@
-import {Component, Input} from '@angular/core';
-import {AbstractControl} from "@angular/forms";
+import { Component, Input } from '@angular/core';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-validation-messages',
   templateUrl: './validation-messages.component.html',
-  styleUrls: ['./validation-messages.component.scss']
+  styleUrls: ['./validation-messages.component.scss'],
 })
 export class ValidationMessagesComponent {
   @Input() control: AbstractControl;
@@ -14,13 +14,15 @@ export class ValidationMessagesComponent {
   }
 
   getErrorMessage(errorKey: string): string {
+    console.log('error', errorKey);
     const errors = {
       required: 'Field is required.',
       email: 'Invalid email format.',
-      invalidPassword: 'Password must contain at least 8 characters, including a number and a capital letter.',
+      invalidPassword:
+        'Password must contain at least 8 characters, including a number and a capital letter.',
       maxlength: 'Exceeding max length for field.',
       pattern: 'Invalid characters.',
-      passwordsNotMatch: 'The passwords do not match.'
+      passwordsNotMatch: 'The passwords do not match.',
     };
 
     return errors[errorKey] || 'Unknown error';

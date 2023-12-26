@@ -1,1 +1,11 @@
-<p>admin items works!</p>
+<button (click)="openEditModal(recipes[0], 'Recipe')">Edit</button>
+<button (click)="openAddModal('Product')">Add</button>
+
+<app-modal
+  *ngIf="isModalOpen"
+  [modalTitle]="modalTitle"
+  [data]="modalData"
+  [type]="'Recipe'"
+  (closeModal)="closeModal()"
+  (saveData)="saveItem($event)"
+></app-modal>
