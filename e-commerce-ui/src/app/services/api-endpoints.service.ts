@@ -99,6 +99,13 @@ export class ApiEndpointsService {
     return this.http.delete(`${this.apiUrl}/users/${user_id}`, {withCredentials: true})
   }
 
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/products/${productId}`, {withCredentials: true});
+  }
+  deleteRecipe(recipeId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials: true});
+  }
+
   switchUserRole(user_id: number): Observable<any> {
     return this.http.patch(`${this.apiUrl}/users/${user_id}`,null, {withCredentials: true});
   }

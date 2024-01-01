@@ -6,7 +6,7 @@
     </div>
     <div class="modal-content">
       <form [formGroup]="form">
-        <p>Please use the following symbol to split your steps ','</p>
+        <p *ngIf="type === 'Recipe'">Please use the following symbol to split your steps '|'</p>
         <div *ngFor="let controlName of form.controls | keyvalue">
           <label>{{ controlName.key | camelCaseToSpace }}</label>
           <input [formControlName]="controlName.key" />

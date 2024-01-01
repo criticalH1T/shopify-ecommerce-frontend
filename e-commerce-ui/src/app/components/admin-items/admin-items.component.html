@@ -1,11 +1,77 @@
-<button (click)="openEditModal(recipes[0], 'Recipe')">Edit</button>
-<button (click)="openAddModal('Product')">Add</button>
+<div class="container">
+  <div class="back" routerLink="/admin">
+    <i class="bi bi-arrow-left"></i>
+    <button class="back-button">
+      Back
+    </button>
+  </div>
+  <div class="content">
+    <div class="category-container" *ngIf="!isCategoryChosen">
+      <h2>Choose category</h2>
+      <table class="category-table">
+        <tr>
+          <th>Categories</th>
+        </tr>
+        <tr *ngFor="let category of categories" (click)="selectCategory(category)" class="category-table-tr">
+          <td>{{ category }}</td>
+        </tr>
+      </table>
+    </div>
 
-<app-modal
-  *ngIf="isModalOpen"
-  [modalTitle]="modalTitle"
-  [data]="modalData"
-  [type]="'Recipe'"
-  (closeModal)="closeModal()"
-  (saveData)="saveItem($event)"
-></app-modal>
+    <div class="item-container" *ngIf="isCategoryChosen && products != [] && recipes != []">
+      <h2>Add/Edit {{ categoryChosen }} </h2>
+      <div class="controls">
+        <button class="back-to-categories" (click)="deselectCategory()">
+          <p>Back to categories</p>
+        </button>
+        <button (click)="openAddModal(categoryChosen.slice(0, -1))">
+          <p>Add New {{ categoryChosen.slice(0, -1) }}</p>
+        </button>
+      </div>
+      <table class="item-table">
+        <tr>
+          <th>{{ categoryChosen.slice(0, -1) }} image</th>
+          <th>{{ categoryChosen.slice(0, -1) }} name</th>
+          <th>Actions</th>
+        </tr>
+        <ng-container *ngIf="categoryChosen === 'Products'">
+          <tr *ngFor="let item of products">
+            <td>
+              <img [ngSrc]="item.imageUrl" alt="" height="65" width="35">
+            </td>
+            <td>
+              <p>{{ item.name }}</p>
+            </td>
+            <td class="actions">
+              <i class="bi bi-pencil-square" (click)="openEditModal(item, 'Product')"></i>
+              <i class="bi bi-x-square-fill" (click)="deleteItem(item, 'Product')"></i>
+            </td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="categoryChosen === 'Recipes'">
+          <tr *ngFor="let item of recipes">
+            <td>
+              <img [ngSrc]="item.image_path" alt="" height="65" width="55">
+            </td>
+            <td>
+              <p>{{ item.name }}</p>
+            </td>
+            <td class="actions">
+              <i class="bi bi-pencil-square" (click)="openEditModal(item, 'Recipe')"></i>
+              <i class="bi bi-x-square-fill" (click)="deleteItem(item, 'Recipe')"></i>
+            </td>
+          </tr>
+        </ng-container>
+      </table>
+
+      <app-modal
+        *ngIf="isModalOpen"
+        [modalTitle]="modalTitle"
+        [data]="modalData"
+        [type]="categoryChosen.slice(0, -1)"
+        (closeModal)="closeModal()"
+        (saveData)="saveItem($event)"
+      ></app-modal>
+    </div>
+  </div>
+</div>
