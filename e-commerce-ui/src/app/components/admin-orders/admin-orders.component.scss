@@ -43,13 +43,14 @@
       }
       .order-table {
         .selected {
-          background-color: #a8a8a8;
+          td {
+            background-color: #cccccc;
+          }
         }
         tr:hover {
           cursor: pointer;
         }
       }
-    ;
     }
 
     .second-container {
