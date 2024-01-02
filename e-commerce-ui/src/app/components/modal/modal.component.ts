@@ -1,6 +1,10 @@
+export enum Type {
+  Recipe = 'Recipe',
+  Product = 'Product',
+}
+
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
-  AbstractControl,
   FormBuilder,
   FormGroup,
   Validators,
@@ -31,8 +35,10 @@ export class ModalComponent implements OnInit {
 
   onSave() {
     let formData = this.form.value;
-    formData.steps = formData.steps.split('|').map(item => item.trim());
-    formData.ingredients = formData.ingredients.split('|').map(item => item.trim());
+    if (this.type === Type.Recipe) {
+      formData.steps = formData.steps.split('|').map(item => item.trim());
+      formData.ingredients = formData.ingredients.split('|').map(item => item.trim());
+    }
     //Passing this data to parent component
     this.saveData.emit(formData);
   }
@@ -43,7 +49,7 @@ export class ModalComponent implements OnInit {
 
     // Customizing form controls fields depending on item type
     switch (this.type) {
-      case 'Product':
+      case Type.Product:
         this.form = this.fb.group({
           name: [this.data.name || '', [Validators.required]],
           categoryName: [
@@ -65,7 +71,7 @@ export class ModalComponent implements OnInit {
           ],
         });
         break;
-      case 'Recipe':
+      case Type.Recipe:
         this.form = this.fb.group({
           name: [this.data.name || '', [Validators.required]],
           description: [this.data.description || '', [Validators.required]],

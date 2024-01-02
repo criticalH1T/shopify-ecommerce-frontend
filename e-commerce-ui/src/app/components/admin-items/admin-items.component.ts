@@ -1,11 +1,11 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ApiEndpointsService,
   Product,
   Recipe,
 } from '../../services/api-endpoints.service';
-import {StateService} from "../../services/state.service";
-import {forkJoin} from "rxjs";
+import { StateService } from "../../services/state.service";
+import { forkJoin } from "rxjs";
 
 @Component({
   selector: 'app-admin-items',
@@ -24,19 +24,19 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   modalData: any;
 
   constructor(public apiEndpointsService: ApiEndpointsService,
-              public stateService: StateService) {}
+    public stateService: StateService) { }
   ngOnInit(): void {
-      forkJoin([
-          this.apiEndpointsService.getProducts(),
-          this.apiEndpointsService.getRecipes()
-      ]).subscribe(([products, recipes]) => {
-          this.products = products;
-          this.recipes = recipes;
-          if (this.stateService.getIsCategoryChosen()) {
-            this.isCategoryChosen = true;
-            this.categoryChosen = this.stateService.getCategoryChosen();
-          }
-      });
+    forkJoin([
+      this.apiEndpointsService.getProducts(),
+      this.apiEndpointsService.getRecipes()
+    ]).subscribe(([products, recipes]) => {
+      this.products = products;
+      this.recipes = recipes;
+      if (this.stateService.getIsCategoryChosen()) {
+        this.isCategoryChosen = true;
+        this.categoryChosen = this.stateService.getCategoryChosen();
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -87,7 +87,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   deleteProduct(product: Product) {
     this.apiEndpointsService.deleteProduct(product.id).subscribe(
       response => {
-        if(response.status == 200) {
+        if (response.status == 200) {
           this.products = this.products.filter(product => product.id !== product.id);
         } else {
           alert(`Error deleting product with ID ${product.id}: ${response.responseMessage}`);
@@ -98,7 +98,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   deleteRecipe(recipe: Recipe) {
     this.apiEndpointsService.deleteRecipe(recipe.id).subscribe(
       response => {
-        if(response.status == 200) {
+        if (response.status == 200) {
           this.recipes = this.recipes.filter(recipe => recipe.id !== recipe.id);
         } else {
           alert(`Error deleting recipe with ID ${recipe.id}: ${response.responseMessage}`);
@@ -108,10 +108,9 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   }
 
   deleteItem(item: any, itemType: string) {
-    if (itemType === 'Product') {
-      this.deleteProduct(item);
-    } else {
-      this.deleteRecipe(item);
+    const confirmation = window.confirm(`Are you sure you want to delete the ${itemType} with id ${item.id}`);
+    if (confirmation) {
+      itemType === 'Product' ? this.deleteProduct(item) : this.deleteRecipe(item);
     }
   }
 }

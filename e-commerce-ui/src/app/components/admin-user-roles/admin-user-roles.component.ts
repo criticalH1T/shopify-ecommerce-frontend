@@ -24,15 +24,18 @@ export class AdminUserRolesComponent implements OnInit {
   }
 
   deleteUser(userId: number) {
-    this.apiEndpointsService.deleteUser(userId).subscribe(
-      response => {
-        if(response.status == 200) {
-          this.users = this.users.filter(user => user.userId !== userId);
-        } else {
-          alert(`Error deleting user with ID ${userId}: ${response.responseMessage}`);
+    const confirmation = window.confirm(`Are you sure you want to delete user with id ${userId}`);
+    if (confirmation) {
+      this.apiEndpointsService.deleteUser(userId).subscribe(
+        response => {
+          if(response.status == 200) {
+            this.users = this.users.filter(user => user.userId !== userId);
+          } else {
+            alert(`Error deleting user with ID ${userId}: ${response.responseMessage}`);
+          }
         }
-      }
-    );
+      );
+    }
   }
 
   toggleUserRole(userId: number) {
