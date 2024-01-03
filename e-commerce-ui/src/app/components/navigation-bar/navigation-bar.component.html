@@ -20,15 +20,26 @@
       </div>
 
     </div>
-    <div class="action-icons">
+    <div class="action-icons" [class.admin-dashboard]="this.isAdmin">
       <button (click)="openSearchBar()">
-        <i class="bi bi-search"></i>
+        <abbr title="Search">
+          <i class="bi bi-search"></i>
+        </abbr>
       </button>
       <button>
-        <i class="bi bi-bag" routerLink="/cart"></i>
+        <abbr title="Shopping Cart">
+          <i class="bi bi-bag" routerLink="/cart"></i>
+        </abbr>
       </button>
       <button>
-        <i class="bi bi-person" routerLink="/sign-in"></i>
+        <abbr title="Sign In">
+          <i class="bi bi-person" routerLink="/sign-in"></i>
+        </abbr>
+      </button>
+      <button *ngIf="this.isAdmin">
+        <abbr title="Admin Dashboard">
+          <i class="bi bi-person-gear" routerLink="/admin"></i>
+        </abbr>
       </button>
     </div>
   </div>
@@ -66,15 +77,26 @@
     <div class="logo">
       <img ngSrc="../../../assets/logo.png" alt="logo" height="38" width="100" routerLink="/home">
     </div>
-    <div class="action-icons">
+    <div class="action-icons" [class.admin-dashboard]="this.isAdmin">
       <button (click)="openSearchBar()">
-        <i class="bi bi-search"></i>
+        <abbr title="Search">
+          <i class="bi bi-search"></i>
+        </abbr>
       </button>
       <button>
-        <i class="bi bi-bag" routerLink="/cart"></i>
+        <abbr title="Shopping Cart">
+          <i class="bi bi-bag" routerLink="/cart"></i>
+        </abbr>
       </button>
       <button>
-        <i class="bi bi-person" routerLink="/sign-in"></i>
+        <abbr title="Sign In">
+          <i class="bi bi-person" routerLink="/sign-in"></i>
+        </abbr>
+      </button>
+      <button *ngIf="this.isAdmin">
+        <abbr title="Admin Dashboard">
+          <i class="bi bi-person-gear" routerLink="/admin"></i>
+        </abbr>
       </button>
     </div>
   </div>

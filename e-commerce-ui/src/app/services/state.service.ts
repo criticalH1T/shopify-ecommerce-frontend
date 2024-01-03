@@ -9,6 +9,14 @@ export class StateService {
 
   constructor() { }
 
+  getLocalStorageItem(itemKey: string) {
+    return JSON.parse(localStorage.getItem(itemKey));
+  }
+
+  setLocalStorageItem(itemKey: string, itemValue: any) {
+    localStorage.setItem(itemKey, JSON.stringify(itemValue));
+  }
+
   getIsCategoryChosen(): boolean {
     return JSON.parse(localStorage.getItem(this.CATEGORY_CHOSEN_KEY) || 'false');
   }

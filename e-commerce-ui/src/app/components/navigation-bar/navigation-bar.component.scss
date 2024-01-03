@@ -95,11 +95,20 @@
         font-size: 1.4rem;
       }
     }
+    .bi-person-gear, .bi-person {
+      padding-right: 0;
+    }
+  }
+  .admin-dashboard {
+    width: 10rem;
+    .bi-person {
+      padding-right: 0.8rem;
+    }
   }
 }
 
 .side-menu {
-  width: 4.5rem; // for the icons so they don't move the whole header
+  //width: 4.5rem; // for the icons so they don't move the whole header
   i {
     padding: 0.8rem 0.8rem 0.8rem 0;
     font-size: 1.4rem;
