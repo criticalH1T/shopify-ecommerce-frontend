@@ -1,3 +1,12 @@
+enum modalAction {
+  EDIT = 'Edit',
+  ADD = 'Add'
+}
+export enum categoryChosen {
+  RECIPE = 'Recipes',
+  PRODUCT = 'Products',
+}
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {
   ApiEndpointsService,
@@ -12,6 +21,7 @@ import { forkJoin } from "rxjs";
   templateUrl: './admin-items.component.html',
   styleUrls: ['./admin-items.component.scss'],
 })
+
 export class AdminItemsComponent implements OnInit, OnDestroy {
 
   isCategoryChosen: boolean = false;
@@ -22,6 +32,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   isModalOpen: boolean = false;
   modalTitle: string = 'Umm..';
   modalData: any;
+  modalAction: modalAction;
 
   constructor(public apiEndpointsService: ApiEndpointsService,
     public stateService: StateService) { }
@@ -48,19 +59,70 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   }
 
   saveItem(formData: any) {
-    // Implement logic to save/update the item based on formData
-    console.log('Saving data:', formData);
+    console.log('formData::::', formData);
+
+    switch (this.categoryChosen) {
+      case categoryChosen.PRODUCT:
+        if (this.modalAction === modalAction.EDIT) {
+          this.apiEndpointsService.updateProduct(formData).subscribe(
+            response => {
+              window.alert(response["responseMessage"]);
+            },
+            error => {
+              console.error("Error updating product:", error);
+              // Handle error appropriately
+            }
+          );
+        } else {
+          this.apiEndpointsService.createProduct(formData).subscribe(
+            response => {
+              window.alert(response['responseMessage']);
+            },
+            error => {
+              console.error("Error creating product:", error);
+              // Handle error appropriately
+            }
+          );
+        }
+        break;
+
+      case categoryChosen.RECIPE:
+        if (this.modalAction === modalAction.EDIT) {
+          this.apiEndpointsService.updateRecipe(formData).subscribe(
+            response => {
+              window.alert(response['responseMessage']);
+            },
+            error => {
+              console.error("Error updating recipe:", error);
+              // Handle error appropriately
+            }
+          );
+        } else {
+          this.apiEndpointsService.createRecipe(formData).subscribe(
+            response => {
+              window.alert(response['responseMessage']);
+            },
+            error => {
+              console.error("Error creating recipe:", error);
+              // Handle error appropriately
+            }
+          );
+        }
+        break;
+    }
     this.closeModal();
   }
 
   openEditModal(item: any, itemType: string) {
-    //TODO make enum for product and recipe and use it where needed
+    // TODO make enum for product and recipe and use it where needed
+    this.modalAction = modalAction.EDIT;
     this.modalTitle = 'Edit ' + itemType;
     this.modalData = { ...item };
     this.isModalOpen = true;
   }
 
   openAddModal(itemType: string) {
+    this.modalAction = modalAction.ADD;
     this.modalTitle = 'Add New ' + itemType;
     this.modalData = {};
     this.isModalOpen = true;
@@ -88,7 +150,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
     this.apiEndpointsService.deleteProduct(product.id).subscribe(
       response => {
         if (response.status == 200) {
-          this.products = this.products.filter(product => product.id !== product.id);
+          this.products = this.products.filter(element => product.id !== element.id);
         } else {
           alert(`Error deleting product with ID ${product.id}: ${response.responseMessage}`);
         }
@@ -99,7 +161,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
     this.apiEndpointsService.deleteRecipe(recipe.id).subscribe(
       response => {
         if (response.status == 200) {
-          this.recipes = this.recipes.filter(recipe => recipe.id !== recipe.id);
+          this.recipes = this.recipes.filter(element => recipe.id !== element.id);
         } else {
           alert(`Error deleting recipe with ID ${recipe.id}: ${response.responseMessage}`);
         }

@@ -13,7 +13,7 @@ export interface UserSignUp {
   password: string
 }
 
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {catchError} from "rxjs/operators";
 import {ApiEndpointsService} from "./api-endpoints.service";

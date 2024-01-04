@@ -99,8 +99,23 @@ export class ApiEndpointsService {
     return this.http.delete(`${this.apiUrl}/users/${user_id}`, {withCredentials: true})
   }
 
+  createProduct(productData: any) {
+    return this.http.post(`${this.apiUrl}/products`, productData, {withCredentials: true});
+  }
+
+  updateProduct(productData: any) {
+    return this.http.put(`${this.apiUrl}/products/${productData.id}`, productData, {withCredentials: true});
+  }
   deleteProduct(productId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/products/${productId}`, {withCredentials: true});
+  }
+
+  createRecipe(recipeData: any) {
+    return this.http.post(`${this.apiUrl}/recipes`, recipeData, {withCredentials: true});
+  }
+
+  updateRecipe(recipeData: any) {
+    return this.http.put(`${this.apiUrl}/recipes/${recipeData.id}`, recipeData, {withCredentials: true});
   }
   deleteRecipe(recipeId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials: true});

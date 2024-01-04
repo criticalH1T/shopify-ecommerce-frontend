@@ -38,7 +38,6 @@
 
 .modal-content {
     margin-bottom: 1rem;
-    padding-right: 1rem;
     /* Approximately 15px */
 }
 
@@ -47,8 +46,8 @@ label {
     margin-bottom: 0.3rem;
 }
 
-input {
-    width: 100%;
+input, select {
+    width: -webkit-fill-available;
     padding: 0.5rem;
     margin-bottom: 0.6rem;
     border: 1px solid #ccc;
@@ -72,7 +71,7 @@ button {
 
 button:hover {
     background-color: black;
-    color: white; 
+    color: white;
 }
 
 p {

@@ -1,6 +1,7 @@
+import {Product} from "../../services/api-endpoints.service";
 export enum Type {
-  Recipe = 'Recipe',
-  Product = 'Product',
+  RECIPE = 'Recipe',
+  PRODUCT = 'Product',
 }
 
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
@@ -9,6 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import {ModalDataService} from "../../services/modal-data.service";
 
 @Component({
   selector: 'app-modal',
@@ -19,14 +21,29 @@ export class ModalComponent implements OnInit {
   @Input() modalTitle: string = '';
   @Input() data: any;
   @Input() type: string = '';
+  @Input() products: Product[] = [];
+  @Input() action: string = '';
   @Output() closeModal = new EventEmitter<void>();
   @Output() saveData = new EventEmitter<any>();
+  productCategories: {}[];
+  productImages: {}[];
+  recipeImages: {}[];
+  selectedProductCategory: number | null = null;
   form: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,
+              private modalDataService: ModalDataService) {}
 
   ngOnInit(): void {
+    this.productCategories = this.modalDataService.getProductCategories();
+    this.productImages = this.modalDataService.getProductImages();
+    this.recipeImages = this.modalDataService.getRecipeImages();
     this.buildForm();
+  }
+
+  selectProductCategory() {
+    return parseInt(this.productCategories
+      .find(category => category['name'] === this.data.categoryCategoryName)['id']);
   }
 
   onClose() {
@@ -35,10 +52,14 @@ export class ModalComponent implements OnInit {
 
   onSave() {
     let formData = this.form.value;
-    if (this.type === Type.Recipe) {
+    if (this.type === Type.RECIPE) {
       formData.steps = formData.steps.split('|').map(item => item.trim());
       formData.ingredients = formData.ingredients.split('|').map(item => item.trim());
+      formData.product = formData.product != '' ? parseInt(formData.product) : null;
+    } else {
+      formData.category = parseInt(formData.category);
     }
+    formData.id = this.data.id;
     //Passing this data to parent component
     this.saveData.emit(formData);
   }
@@ -49,11 +70,14 @@ export class ModalComponent implements OnInit {
 
     // Customizing form controls fields depending on item type
     switch (this.type) {
-      case Type.Product:
+      case Type.PRODUCT:
+        if (Object.keys(this.data).length != 0) {
+          this.selectedProductCategory = this.selectProductCategory();
+        }
         this.form = this.fb.group({
           name: [this.data.name || '', [Validators.required]],
-          categoryName: [
-            this.data.categoryCategoryName || '',
+          category: [
+            this.selectedProductCategory || '',
             [Validators.required],
           ],
           description: [this.data.description || '', [Validators.required]],
@@ -69,34 +93,24 @@ export class ModalComponent implements OnInit {
             this.data.volume || '',
             [Validators.required, Validators.pattern('^[0-9]*$')],
           ],
+          productImage: [
+            this.data.imageUrl || '',
+            [Validators.required]
+          ],
         });
         break;
-      case Type.Recipe:
+      case Type.RECIPE:
         this.form = this.fb.group({
           name: [this.data.name || '', [Validators.required]],
           description: [this.data.description || '', [Validators.required]],
           ingredients: [ingredientsValue || '', [Validators.required]],
           steps: [stepsValue || '', [Validators.required]],
-          productName: [
-            (this.data.product && this.data.product.name) || '',
+          product: [
+            (this.data.product && this.data.product.id) || '',
           ],
-          productCategoryName: [
-            (this.data.product && this.data.product.categoryCategoryName) || '',
-          ],
-          productDescription: [
-            (this.data.product && this.data.product.description) || '',
-          ],
-          productPrice: [
-            (this.data.product && this.data.product.price) || '',
-            [Validators.pattern(/^\d+(\.\d+)?$/)],
-          ],
-          productStockQuantity: [
-            (this.data.product && this.data.product.stockQuantity) || '',
-            [Validators.pattern('^[0-9]*$')],
-          ],
-          productVolume: [
-            (this.data.product && this.data.product.volume) || '',
-            [Validators.pattern('^[0-9]*$')],
+          recipeImage: [
+            this.data.image_path || '',
+            [Validators.required]
           ],
         });
         break;

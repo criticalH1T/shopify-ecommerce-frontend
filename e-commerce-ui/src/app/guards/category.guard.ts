@@ -1,7 +1,7 @@
 import { CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { ApiEndpointsService } from '../services/api-endpoints.service';
-import { catchError, switchMap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 export const categoryGuard: CanActivateFn = (route) => {
