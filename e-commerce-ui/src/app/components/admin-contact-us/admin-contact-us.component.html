@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="back" routerLink="/admin">
+    <i class="bi bi-arrow-left"></i>
+    <button class="back-button">
+      Back
+    </button>
+  </div>
+  <div class="content" *ngIf="contacts">
+    <h2>Contacts</h2>
+    <table class="contact-table">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Comment</th>
+        <th>Delete</th>
+      </tr>
+      <tr *ngFor="let contact of contacts">
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.email }} </td>
+        <td>{{ contact.comment }}</td>
+        <td>
+          <i class="bi bi-x-square-fill" (click)="deleteContact(contact)"></i>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
