@@ -69,4 +69,16 @@ export class AuthenticationService {
     }
     return throwError(error)
   }
+
+  logOutUser() {
+    sessionStorage.removeItem('isUserLoggedIn');
+    localStorage.removeItem('isAdmin');
+    this.apiEndpointsService.logOutUser().subscribe(
+      response => {
+        if(response.status === 200) {
+          window.alert('You have been logged out.');
+        }
+      }
+    )
+  }
 }

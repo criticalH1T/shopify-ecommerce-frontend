@@ -32,8 +32,8 @@
         </abbr>
       </button>
       <button>
-        <abbr title="Sign In">
-          <i class="bi bi-person" routerLink="/sign-in"></i>
+        <abbr title="Sign In/Out">
+          <i class="bi bi-person" (click)="manageUserSession()"></i>
         </abbr>
       </button>
       <button *ngIf="this.isAdmin">
@@ -89,8 +89,8 @@
         </abbr>
       </button>
       <button>
-        <abbr title="Sign In">
-          <i class="bi bi-person" routerLink="/sign-in"></i>
+        <abbr title="Sign In/Out">
+          <i class="bi bi-person" (click)="manageUserSession()"></i>
         </abbr>
       </button>
       <button *ngIf="this.isAdmin">
