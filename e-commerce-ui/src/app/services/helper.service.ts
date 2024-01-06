@@ -57,7 +57,7 @@ export class HelperService {
       case ProductFilters.IN_STOCK:
         return holderList.filter(item => item.stockQuantity > 0);
       case ProductFilters.OUT_OF_STOCK:
-        return holderList.filter(item => item.stockQuantity < 0);
+        return holderList.filter(item => item.stockQuantity <= 0);
       default:
         return holderList;
     }
