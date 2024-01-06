@@ -9,7 +9,32 @@
         <p *ngIf="type === 'Recipe'">Please use the following symbol to split your steps '|'</p>
         <div *ngFor="let controlName of form.controls | keyvalue">
           <label>{{ controlName.key | camelCaseToSpace }}</label>
-          <input [formControlName]="controlName.key" />
+          <ng-container [ngSwitch]="controlName.key">
+            <ng-container *ngSwitchCase="'category'">
+              <select [formControlName]="controlName.key">
+                <option *ngFor="let productCategory of productCategories" [value]="productCategory['id']">{{ productCategory['name']}}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'product'">
+              <select [formControlName]="controlName.key">
+                <option value="">None</option>
+                <option *ngFor="let product of products" [value]="product.id">{{ product.name }}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'productImage'">
+              <select [formControlName]="controlName.key">
+                <option *ngFor="let productImage of productImages" [value]="productImage['imageUrl']">{{ productImage['imageName']}}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'recipeImage'">
+              <select [formControlName]="controlName.key">
+                <option *ngFor="let recipeImage of recipeImages" [value]="recipeImage['imageUrl']">{{ recipeImage['imageName']}}</option>
+              </select>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <input [formControlName]="controlName.key"/>
+            </ng-container>
+          </ng-container>
           <app-validation-messages
             [control]="form.get(controlName.key)"
           ></app-validation-messages>

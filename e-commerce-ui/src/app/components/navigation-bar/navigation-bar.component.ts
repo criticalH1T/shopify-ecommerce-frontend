@@ -1,9 +1,12 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {Router} from "@angular/router";
+import {Router, withDebugTracing} from "@angular/router";
 import {HelperService, Products} from "../../services/helper.service";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 import {Subscription} from "rxjs";
+import {StateService} from "../../services/state.service";
+import {EncryptionService} from "../../services/encryption.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -49,6 +52,7 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   isSearchBarOpened: boolean = false;
   allProducts: Product[] = [];
   subscriptions: Subscription[] = [];
+  isAdmin: boolean | null = null;
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
@@ -61,17 +65,33 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
 
   constructor(private router: Router,
               private helperService: HelperService,
-              private apiEndPointService: ApiEndpointsService) {
+              private apiEndPointService: ApiEndpointsService,
+              private stateService: StateService,
+              private encryptionService: EncryptionService,
+              private authenticationService: AuthenticationService) {
     window.addEventListener('resize', this.onWindowResize.bind(this))
   }
 
   ngOnInit(): void {
-        this.subscriptions.push(this.apiEndPointService.getProducts().subscribe(products => {
-          this.allProducts.push(...products);
-        }));
-    }
+      this.subscriptions.push(this.apiEndPointService.getProducts().subscribe(products => {
+        this.allProducts.push(...products);
+        this.isAdmin = this.getIsAdmin();
+      }));
+      this.authenticationService.isAdmin.subscribe(value => {
+        this.isAdmin = value;
+      })
+  }
+
   ngOnDestroy(): void {
     this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
+
+  getIsAdmin() {
+    let isAdmin = this.stateService.getLocalStorageItem('isAdmin');
+    if (isAdmin != null) {
+      isAdmin = this.encryptionService.decryptData(isAdmin);
+      return isAdmin === 'false' ? false : !!isAdmin;
+    } else return null;
   }
 
   toggleDropdown(name: string) {
@@ -147,4 +167,6 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
   closeSearchBar() {
     this.isSearchBarOpened = false;
   }
+
+  protected readonly withDebugTracing = withDebugTracing;
 }
