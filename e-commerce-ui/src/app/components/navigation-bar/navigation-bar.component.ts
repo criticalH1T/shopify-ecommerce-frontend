@@ -168,5 +168,17 @@ export class NavigationBarComponent implements OnInit, OnDestroy {
     this.isSearchBarOpened = false;
   }
 
-  protected readonly withDebugTracing = withDebugTracing;
+  manageUserSession() {
+    const isUserLoggedIn = sessionStorage.getItem('isUserLoggedIn');
+    if(isUserLoggedIn) {
+      const confirm = window.confirm('Are you sure you want to sign out?');
+      if(confirm) {
+        this.router.navigate(['/home']);
+        this.authenticationService.logOutUser();
+        this.isAdmin = null;
+      }
+    } else {
+      this.router.navigate(['/sign-in']);
+    }
+  }
 }

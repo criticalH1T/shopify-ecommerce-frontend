@@ -27,7 +27,7 @@ export interface Recipe {
   image_path: string;
 }
 
-export interface adminResponse {
+export interface genericResponse {
   responseMessage: string,
   status: number
 }
@@ -172,9 +172,13 @@ export class ApiEndpointsService {
     );
   }
   isAdmin(): Observable<boolean> {
-    return this.http.get<adminResponse>(`${this.apiUrl}/admin`, {withCredentials: true}).pipe(
+    return this.http.get<genericResponse>(`${this.apiUrl}/admin`, {withCredentials: true}).pipe(
       map(response => response.status == 200),
       catchError(() => of(false))
     );
+  }
+
+  logOutUser(): Observable<any> {
+    return this.http.delete<genericResponse>(`${this.apiUrl}/cookies/deleteJwt`, {withCredentials: true});
   }
 }
