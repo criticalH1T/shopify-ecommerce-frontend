@@ -3,6 +3,7 @@ import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, first, Subscription} from "rxjs";
 import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
 import {HelperService, ProductFilters, Products, Routes} from "../../services/helper.service";
+import {considerSettingUpAutocompletion} from "@angular/cli/src/utilities/completion";
 
 @Component({
   selector: 'app-product-list',
@@ -75,11 +76,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(private apiEndpointService: ApiEndpointsService,
-              public helperService: HelperService,
+  constructor(public helperService: HelperService,
               private router: Router,
               private activatedRoute: ActivatedRoute) {
-
   }
 
   ngOnInit(): void {
@@ -101,6 +100,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   private getProductsForCategory(): void {
     this.subscriptions.push(this.activatedRoute.data.pipe(first()).subscribe(products => {
       this.productList = [];
+      this.noFilterProductList = [];
       if (this.activeCategory === 'shop-all') {
         this.productList.push(...products['resolver']);
       } else {
@@ -117,7 +117,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
     );
   }
 
-  FilterBy(filterType: string, subFilterName: string) {
+  filterBy(filterType: string, subFilterName: string) {
     const targetedFilter = this.dropdownButtons.find(filter => filter.type === filterType);
     if (this.noFilterProductList.length === 0) {
       this.noFilterProductList = [...this.productList];

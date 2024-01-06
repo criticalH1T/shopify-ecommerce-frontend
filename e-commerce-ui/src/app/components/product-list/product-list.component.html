@@ -23,7 +23,7 @@
             <span>Reset</span>
           </button>
           <button *ngFor="let filterName of item.sections" class="dropdown-item"
-                  (click)="FilterBy(item.type, filterName)">
+                  (click)="filterBy(item.type, filterName)">
             <span>{{ filterName }}</span>
           </button>
         </div>
