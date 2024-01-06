@@ -55,6 +55,12 @@ export interface Order {
   user: User
 }
 
+export interface Contact {
+  id: number,
+  name: string,
+  email: string,
+  comment: string
+}
 
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
@@ -119,6 +125,17 @@ export class ApiEndpointsService {
   }
   deleteRecipe(recipeId: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/recipes/${recipeId}`, {withCredentials: true});
+  }
+
+  getContacts() {
+    return this.http.get<Contact[]>(`${this.apiUrl}/contact`, {withCredentials: true});
+  }
+
+  createContact(contact: any) {
+    return this.http.post<genericResponse>(`${this.apiUrl}/contact`, contact,{withCredentials:true});
+  }
+  deleteContact(contactId: number) {
+    return this.http.delete<genericResponse>(`${this.apiUrl}/contact/${contactId}`, {withCredentials: true});
   }
 
   switchUserRole(user_id: number): Observable<any> {

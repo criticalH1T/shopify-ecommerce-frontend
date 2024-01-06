@@ -29,7 +29,7 @@ export class AdminComponent {
       "title": "Modify items",
     },
     {
-      "componentName": "/contacts",
+      "componentName": "/contact-us",
       "iconName": "bi bi-envelope-at",
       "title": "View contacts",
     }

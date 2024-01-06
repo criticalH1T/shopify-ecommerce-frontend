@@ -40,9 +40,10 @@
       border: solid 0.06rem black;
       background-color: black;
       color: white;
+      cursor: pointer;
     }
 
-    .submit-button{
+    .submit-button:disabled {
       cursor: not-allowed;
     }
 

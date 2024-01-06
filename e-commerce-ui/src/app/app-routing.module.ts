@@ -24,6 +24,7 @@ import {AdminComponent} from "./components/admin/admin.component";
 import {AdminOrdersComponent} from "./components/admin-orders/admin-orders.component";
 import {AdminUserRolesComponent} from "./components/admin-user-roles/admin-user-roles.component";
 import {AdminItemsComponent} from "./components/admin-items/admin-items.component";
+import {AdminContactUsComponent} from "./components/admin-contact-us/admin-contact-us.component";
 
 const routes: Routes = [
   {
@@ -113,6 +114,10 @@ const routes: Routes = [
       {
         path: 'items',
         component: AdminItemsComponent
+      },
+      {
+        path: 'contact-us',
+        component: AdminContactUsComponent
       }
     ]
   },
