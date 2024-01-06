@@ -29,7 +29,7 @@
                   />
                 </div>
                 <div class="product-info">
-                  <h4 class="product-name">{{ row.name }}</h4>
+                  <h4 class="product-name" routerLink="/{{ this.helperService.transformToRouterString(row.categoryCategoryName) }}/{{ row.id }}" target="_blank">{{ row.name }}</h4>
                   <p>${{ row.price }}</p>
                   <p>{{ row.volume }} ml</p>
                 </div>

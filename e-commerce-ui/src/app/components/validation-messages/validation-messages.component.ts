@@ -14,7 +14,6 @@ export class ValidationMessagesComponent {
   }
 
   getErrorMessage(errorKey: string): string {
-    console.log('error', errorKey);
     const errors = {
       required: 'Field is required.',
       email: 'Invalid email format.',

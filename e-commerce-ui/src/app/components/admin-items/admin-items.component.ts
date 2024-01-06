@@ -59,8 +59,6 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
   }
 
   saveItem(formData: any) {
-    console.log('formData::::', formData);
-
     switch (this.categoryChosen) {
       case categoryChosen.PRODUCT:
         if (this.modalAction === modalAction.EDIT) {
@@ -69,8 +67,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
               window.alert(response["responseMessage"]);
             },
             error => {
-              console.error("Error updating product:", error);
-              // Handle error appropriately
+              window.alert(error.error["responseMessage"]);
             }
           );
         } else {
@@ -79,8 +76,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
               window.alert(response['responseMessage']);
             },
             error => {
-              console.error("Error creating product:", error);
-              // Handle error appropriately
+              window.alert(error.error["responseMessage"]);
             }
           );
         }
@@ -93,8 +89,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
               window.alert(response['responseMessage']);
             },
             error => {
-              console.error("Error updating recipe:", error);
-              // Handle error appropriately
+              window.alert(error.error["responseMessage"]);
             }
           );
         } else {
@@ -103,8 +98,7 @@ export class AdminItemsComponent implements OnInit, OnDestroy {
               window.alert(response['responseMessage']);
             },
             error => {
-              console.error("Error creating recipe:", error);
-              // Handle error appropriately
+              window.alert(error.error["responseMessage"]);
             }
           );
         }
