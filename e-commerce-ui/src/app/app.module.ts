@@ -23,7 +23,7 @@ import { ValidationMessagesComponent } from './components/validation-messages/va
 import { ProductComponent } from './components/product-detail/product/product.component';
 import { SearchBarComponent } from './components/navigation-bar/search-bar/search-bar.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { GridProductsComponent } from './components/grid-products/grid-products.component';
+import { GridProductsComponent } from './components/grid/grid-products/grid-products.component';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { RouterModule } from '@angular/router';

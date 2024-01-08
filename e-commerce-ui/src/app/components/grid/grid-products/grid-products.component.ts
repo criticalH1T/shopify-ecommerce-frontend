@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {HelperService} from "../../services/helper.service";
-import {Product} from "../../services/api-endpoints.service";
+import {HelperService} from "../../../services/helper.service";
+import {Product} from "../../../services/api-endpoints.service";
 
 @Component({
   selector: 'app-grid-products',
