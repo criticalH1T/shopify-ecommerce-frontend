@@ -13,7 +13,7 @@ import {considerSettingUpAutocompletion} from "@angular/cli/src/utilities/comple
 export class ProductListComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   activeCategory: string = '';
-  productList: any[] = [];
+  productList: Product[] = [];
   noFilterProductList: any[] = [];
   categoryBasedInformation: any[] = [
     {

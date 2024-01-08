@@ -1,13 +1,4 @@
 <div class="suggestions">
   <h2>{{gridTitle}}</h2>
-  <div class="grid">
-    <div class="product-card" *ngFor="let product of gridProducts">
-      <img ngSrc="{{product.imageUrl}}" height="300" width="300" alt="product image">
-      <div class="product-card-info">
-        <h4 class="product-title"
-            (click)="helperService.navigateToProductDetails(product.id, product.categoryCategoryName)">{{product.name}}</h4>
-        <p class="product-price">{{product.price}}</p>
-      </div>
-    </div>
-  </div>
+  <app-grid [productList]="gridProducts"></app-grid>
 </div>

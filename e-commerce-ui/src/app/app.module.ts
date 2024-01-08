@@ -36,6 +36,7 @@ import { AdminItemsComponent } from './components/admin-items/admin-items.compon
 import { ModalComponent } from './components/modal/modal.component';
 import { CamelCaseToSpacePipe } from './pipes/camel-case-to-space.pipe';
 import { AdminContactUsComponent } from './components/admin-contact-us/admin-contact-us.component';
+import { GridComponent } from './components/grid/grid.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { AdminContactUsComponent } from './components/admin-contact-us/admin-con
     AdminItemsComponent,
     ModalComponent,
     CamelCaseToSpacePipe,
-    AdminContactUsComponent
+    AdminContactUsComponent,
+    GridComponent
   ],
   imports: [
     BrowserModule,
