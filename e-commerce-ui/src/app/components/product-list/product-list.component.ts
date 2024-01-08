@@ -1,9 +1,8 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter, first, Subscription} from "rxjs";
-import {ApiEndpointsService, Product} from "../../services/api-endpoints.service";
+import {Product} from "../../services/api-endpoints.service";
 import {HelperService, ProductFilters, Products, Routes} from "../../services/helper.service";
-import {considerSettingUpAutocompletion} from "@angular/cli/src/utilities/completion";
 
 @Component({
   selector: 'app-product-list',
@@ -110,6 +109,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   private filterProductsByCategory(products: Product[]): void {
+    console.log(products)
     this.productList.push(
       ...products.filter(product =>
         this.helperService.transformToRouterString(product.categoryCategoryName) === this.activeCategory

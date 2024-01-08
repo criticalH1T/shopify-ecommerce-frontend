@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OurStoryComponent } from './our-story.component';
+import { NgOptimizedImage } from '@angular/common';
 
 describe('OurStoryComponent', () => {
   let component: OurStoryComponent;
@@ -8,7 +9,8 @@ describe('OurStoryComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [OurStoryComponent]
+      declarations: [OurStoryComponent],
+      imports: [NgOptimizedImage]
     });
     fixture = TestBed.createComponent(OurStoryComponent);
     component = fixture.componentInstance;

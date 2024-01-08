@@ -22,7 +22,6 @@ export class ModalComponent implements OnInit {
   @Input() data: any;
   @Input() type: string = '';
   @Input() products: Product[] = [];
-  @Input() action: string = '';
   @Output() closeModal = new EventEmitter<void>();
   @Output() saveData = new EventEmitter<any>();
   productCategories: {}[];

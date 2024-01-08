@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { GridProductsComponent } from './grid-products.component';
+import { GridComponent } from '../grid/grid.component';
 
 describe('GridProductsComponent', () => {
   let component: GridProductsComponent;
@@ -8,7 +9,7 @@ describe('GridProductsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GridProductsComponent]
+      declarations: [GridProductsComponent, GridComponent]
     });
     fixture = TestBed.createComponent(GridProductsComponent);
     component = fixture.componentInstance;

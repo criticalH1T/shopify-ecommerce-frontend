@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminUserRolesComponent } from './admin-user-roles.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AdminUserRolesComponent', () => {
   let component: AdminUserRolesComponent;
@@ -8,7 +9,8 @@ describe('AdminUserRolesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminUserRolesComponent]
+      declarations: [AdminUserRolesComponent],
+      imports: [HttpClientModule]
     });
     fixture = TestBed.createComponent(AdminUserRolesComponent);
     component = fixture.componentInstance;

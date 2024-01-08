@@ -6,7 +6,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductLandingPageComponent } from './components/product-landing-page/product-landing-page.component';
-import { LoginComponent } from './components/login/login.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
@@ -42,7 +41,6 @@ import { GridComponent } from './components/grid/grid.component';
   declarations: [
     AppComponent,
     ProductLandingPageComponent,
-    LoginComponent,
     CheckoutComponent,
     NavigationBarComponent,
     ProductListComponent,

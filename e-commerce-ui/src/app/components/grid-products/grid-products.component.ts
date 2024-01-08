@@ -12,8 +12,5 @@ export class GridProductsComponent {
   @Input() gridProducts: Product[];
   @Input() gridTitle: string;
 
-  constructor(public helperService: HelperService) {
-  }
-
-
+  constructor(public helperService: HelperService) {}
 }

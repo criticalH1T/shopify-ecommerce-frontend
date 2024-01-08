@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminOrdersComponent } from './admin-orders.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('AdminOrdersComponent', () => {
   let component: AdminOrdersComponent;
@@ -8,7 +9,8 @@ describe('AdminOrdersComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AdminOrdersComponent]
+      declarations: [AdminOrdersComponent],
+      imports: [HttpClientModule]
     });
     fixture = TestBed.createComponent(AdminOrdersComponent);
     component = fixture.componentInstance;

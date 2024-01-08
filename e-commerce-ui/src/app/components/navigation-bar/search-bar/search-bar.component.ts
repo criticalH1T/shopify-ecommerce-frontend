@@ -46,7 +46,7 @@ export class SearchBarComponent implements OnInit {
     this.filteredProducts.next(filteredProducts.slice(0,4));
   }
 
-  private setupSearchTextChange() {
+  setupSearchTextChange() {
     this.searchTextSubject.pipe(debounceTime(300)).subscribe(() => {
       this.filterProducts();
     })
