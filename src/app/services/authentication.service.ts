@@ -24,8 +24,8 @@ import {StateService} from "./state.service";
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private registerApiUrl: string = "http://localhost:8080/api/v1/auth/register";
-  private authenticateApiUrl: string = "http://localhost:8080/api/v1/auth/authenticate";
+  private registerApiUrl: string = "http://localhost:8080/register";
+  private authenticateApiUrl: string = "http://localhost:8080/authenticate";
   private IS_ADMIN: string = 'isAdmin';
   isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 

@@ -109,7 +109,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   private filterProductsByCategory(products: Product[]): void {
-    console.log(products)
     this.productList.push(
       ...products.filter(product =>
         this.helperService.transformToRouterString(product.categoryCategoryName) === this.activeCategory
