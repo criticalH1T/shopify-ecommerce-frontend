@@ -97,6 +97,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 - **Database:**
   - PostgreSQL 16.1
+ 
+## Demo:
+You can view a demo of the project uploaded on OneDrive through the following link:
+[Demo](https://onedrive.live.com/?authkey=%21ACRLctqJ7whxTZw&id=42AA43D042607B76%21191966&cid=42AA43D042607B76)
 
 ## How to Contribute:
 
